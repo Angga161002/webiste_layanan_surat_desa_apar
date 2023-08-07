@@ -13,12 +13,12 @@ return new class extends Migration
     {
         Schema::create('penduduks', function (Blueprint $table) {
             $table->unsignedBigInteger('nik', 16);
-            $table->string('name');
+            $table->string('name')->nullable();
             $table->string('email')->unique()->nullable();
             $table->string('pekerjaan')->nullable();
             $table->date('tanggal_lahir')->nullable();
             $table->string('tempat_lahir')->nullable();
-            $table->enum('jenis_kelamin', ['L', 'P']);
+            $table->enum('jenis_kelamin', ['L', 'P'])->nullable();
             $table->string('alamat', 100)->nullable();
             $table->string('agama')->nullable();
             $table->string('no_hp', 14)->unique()->nullable();

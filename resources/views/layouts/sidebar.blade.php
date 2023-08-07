@@ -2,8 +2,7 @@
   <aside class="main-sidebar sidebar-dark-primary elevation-4">
       <!-- Brand Logo -->
       <a href="index3.html" class="brand-link">
-          <img src="{{ asset('kota-pariaman.png') }}" alt="Kota Pariaman"
-              class="brand-image">
+          <img src="{{ asset('kota-pariaman.png') }}" alt="Kota Pariaman" class="brand-image">
           <span class="brand-text font-weight-light">AdminLTE 3</span>
       </a>
 
@@ -16,7 +15,7 @@
                       alt="User Image">
               </div>
               <div class="info">
-                  <a href="#" class="d-block">Alexander Pierce</a>
+                  <a href="#" class="d-block">Pemerintah Desa Apar</a>
               </div>
           </div>
 
@@ -57,20 +56,26 @@
                       </a>
                       <ul class="nav nav-treeview">
                           <li class="nav-item">
+                              <a href="{{ route('pegawai.pegawai') }}" class="nav-link">
+                                  <i class="fa fa-user me-5" style="margin-left: 21px; margin-right: 5px;"></i>
+                                  <p>Tabel Pegawai</p>
+                              </a>
+                          </li>
+                          <li class="nav-item">
                               <a href="{{ route('pegawai.penduduk') }}" class="nav-link">
-                                  <i class="fa fa-users me-5" style="margin-left: 35px; margin-right: 5px;"></i>
+                                  <i class="fa fa-users me-5" style="margin-left: 18px; margin-right: 5px;"></i>
                                   <p>Tabel Penduduk</p>
                               </a>
                           </li>
                           <li class="nav-item">
                               <a href="{{ route('pegawai.pengajuan') }}" class="nav-link">
-                                  <i class="fa fa-tasks" style="margin-left: 36px; margin-right: 9px;"></i>
+                                  <i class="fa fa-tasks" style="margin-left: 19px; margin-right: 9px;"></i>
                                   <p>Tabel Pengajuan</p>
                               </a>
                           </li>
                           <li class="nav-item">
                               <a href="{{ route('pegawai.jenissurat') }}" class="nav-link">
-                                  <i class="fa fa-file" style="margin-left: 37px; margin-right: 13px;"></i>
+                                  <i class="fa fa-file" style="margin-left: 20px; margin-right: 13px;"></i>
                                   <p>Tabel Jenis Surat</p>
                               </a>
                           </li>

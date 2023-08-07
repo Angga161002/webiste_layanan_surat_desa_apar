@@ -1,9 +1,10 @@
 <footer class="main-footer">
-    <strong>Copyright &copy; 2014-2021 <a href="https://adminlte.io">AdminLTE.io</a>.</strong>
-    All rights reserved.
-    <div class="float-right d-none d-sm-inline-block">
-        <b>Version</b> 3.2.0
-    </div>
+    ©
+    <script>
+        document.write(new Date().getFullYear())
+    </script> ,
+    made with <i class="fa fa-heart"></i> by
+    <a href="#" class="font-weight-bold" target="_blank">Pemerintah Desa Apar</a>
 </footer>
 
 <!-- Control Sidebar -->
@@ -15,12 +16,13 @@
 <!-- ./wrapper -->
 
 <!-- Script -->
+@include('sweetalert::alert')
 <script>
     function toggleActive(link) {
-      // Menggunakan JavaScript untuk menambah atau menghapus kelas 'active'
-      link.classList.toggle('active');
+        // Menggunakan JavaScript untuk menambah atau menghapus kelas 'active'
+        link.classList.toggle('active');
     }
-    </script>
+</script>
 <!-- jQuery -->
 <script src="{{ asset('adminlte') }}/plugins/jquery/jquery.min.js"></script>
 <!-- jQuery UI 1.11.4 -->
@@ -52,9 +54,41 @@
 <!-- AdminLTE App -->
 <script src="{{ asset('adminlte') }}/dist/js/adminlte.js"></script>
 <!-- AdminLTE for demo purposes -->
-<script src="{{ asset('adminlte') }}/dist/js/demo.js"></script>
+{{-- <script src="{{ asset('adminlte') }}/dist/js/demo.js"></script> --}}
+<!-- DataTables  & Plugins -->
+<script src="{{ asset('adminlte') }}/plugins/datatables/jquery.dataTables.min.js"></script>
+<script src="{{ asset('adminlte') }}/plugins/datatables-bs4/js/dataTables.bootstrap4.min.js"></script>
+<script src="{{ asset('adminlte') }}/plugins/datatables-responsive/js/dataTables.responsive.min.js"></script>
+<script src="{{ asset('adminlte') }}/plugins/datatables-responsive/js/responsive.bootstrap4.min.js"></script>
+<script src="{{ asset('adminlte') }}/plugins/datatables-buttons/js/dataTables.buttons.min.js"></script>
+<script src="{{ asset('adminlte') }}/plugins/datatables-buttons/js/buttons.bootstrap4.min.js"></script>
+<script src="{{ asset('adminlte') }}/plugins/jszip/jszip.min.js"></script>
+<script src="{{ asset('adminlte') }}/plugins/pdfmake/pdfmake.min.js"></script>
+<script src="{{ asset('adminlte') }}/plugins/pdfmake/vfs_fonts.js"></script>
+<script src="{{ asset('adminlte') }}/plugins/datatables-buttons/js/buttons.html5.min.js"></script>
+<script src="{{ asset('adminlte') }}/plugins/datatables-buttons/js/buttons.print.min.js"></script>
+<script src="{{ asset('adminlte') }}/plugins/datatables-buttons/js/buttons.colVis.min.js"></script>
 <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
 <script src="{{ asset('adminlte') }}/dist/js/pages/dashboard.js"></script>
+<script>
+    $(function() {
+        $("#example1").DataTable({
+            "responsive": true,
+            "lengthChange": false,
+            "autoWidth": false,
+            "buttons": ["copy", "csv", "excel", "pdf", "print", "colvis"]
+        }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
+        $('#example2').DataTable({
+            "paging": true,
+            "lengthChange": false,
+            "searching": false,
+            "ordering": true,
+            "info": true,
+            "autoWidth": false,
+            "responsive": true,
+        });
+    });
+</script>
 <!-- End Script -->
 </body>
 
