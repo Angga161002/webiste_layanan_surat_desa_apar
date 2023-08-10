@@ -6,6 +6,7 @@ use App\Models\Pegawai;
 use App\Models\Penduduk;
 use App\Models\Pengajuan;
 use App\Models\JenisSurat;
+use Session;
 use RealRashid\SweetAlert\Facades\Alert;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
@@ -15,9 +16,43 @@ class PegawaiController extends Controller
     /**
      * Display a listing of the resource.
      */
+    public function login()
+    {
+        return view('pegawai.login');
+    }
+
+    public function authenticate(Request $request)
+    {
+        $validateData = $request->validate([
+            'username' => 'required',
+            'password' => 'required'
+        ]);
+
+        $result = Pegawai::where('username', '=', $validateData['username'])->first();
+        if ($result) {
+            if (Hash::check($request->password, $result->password)) {
+                session(['username' => $request->username]);
+                return redirect('/pegawai')->with('success', 'Login Behasil!');
+            } else {
+                return back()->with('error', 'Login Gagal!');
+            }
+        } else {
+            return back()->with('error', 'Login Gagal!');
+        }
+    }
+
+    public function logout(request $request)
+    {
+        session()->forget('username');
+        return redirect('/login')->with('success', 'Log Out Behasil!');
+    }
+
     public function index()
     {
-        return view('pegawai.dashboard');
+        $data = [];
+        $pegawai = Pegawai::where('id', '=', Session::get('id'))->first();
+        // dd($pegawai->all());
+        return view('pegawai.dashboard', compact('pegawai'));
     }
 
     //Pegawai
@@ -153,10 +188,71 @@ class PegawaiController extends Controller
      */
     public function pengajuan()
     {
-        $pegawais = Pegawai::all();
-        // dd($pegawais->all());
-        return view('pegawai.pengajuan.pengajuan', ['pegawais' => $pegawais]);
+        $pengajuans = Pengajuan::join('penduduks', 'pengajuans.nik_penduduk', '=', 'penduduks.nik')
+            ->join('jenis_surats', 'pengajuans.id_jenis_surat', '=', 'jenis_surats.id')
+            ->select('pengajuans.*', 'penduduks.name', 'penduduks.email', 'penduduks.pekerjaan', 'penduduks.tanggal_lahir', 'penduduks.tempat_lahir', 'penduduks.jenis_kelamin', 'penduduks.alamat', 'penduduks.agama', 'penduduks.no_hp', 'jenis_surats.name_surat')
+            ->get();
+        // dd($pengajuans->all());
+
+        return view('pegawai.pengajuan.pengajuan', ['pengajuans' => $pengajuans]);
     }
+
+    public function editpengajuan($pengajuan_id)
+    {
+        $pengajuans = Pengajuan::findOrFail($pengajuan_id);
+        // dd($pengajuan_id);
+        return view('pegawai.pengajuan.editpengajuan', ['pengajuans' => $pengajuans]);
+    }
+
+    public function ubahpengajuan(Request $request)
+    {
+        // dd($request->all());
+        $id = $request->id;
+        $pengajuans = Pengajuan::where('id', '=', $id)->first();
+        if (!empty($request->nik_penduduk)) {
+            $pengajuans->nik_penduduk = $request->nik_penduduk;
+        }
+        $pengajuans->status = $request->status;
+        if (!empty($request->id_jenis_surat)) {
+            $pengajuans->id_jenis_surat = $request->id_jenis_surat;
+        }
+        if (!empty($request->no_dokumen)) {
+            $pengajuans->no_dokumen_perjalanan = $request->no_dokumen_perjalanan;
+        }
+        $pengajuans->save();
+        return redirect()->route('pegawai.pengajuan')->with('success', 'Data Status Berhasil Diedit!');
+    }
+
+    public function hapuspengajuan($id)
+    {
+        // dd($id);
+        try {
+            $pengajuans = Pengajuan::where('id', $id)->firstOrFail();
+            // dd($pengajuans->all());
+            $pengajuans->delete();
+            return redirect()->route('pegawai.pengajuan')->with('success', 'Data Berhasil Dihapus!');
+        } catch (\Exception $e) {
+            return back()->with('error', 'Gagal Menghapus Data: ' . $e->getMessage());
+            // dd($e->getMessage());
+        }
+    }
+
+    public function detailpengajuan($id)
+    {
+        $pengajuans = Pengajuan::join('penduduks', 'pengajuans.nik_penduduk', '=', 'penduduks.nik')
+            ->join('jenis_surats', 'pengajuans.id_jenis_surat', '=', 'jenis_surats.id')
+            ->select('pengajuans.*', 'penduduks.name', 'penduduks.email', 'penduduks.pekerjaan', 'penduduks.tanggal_lahir', 'penduduks.tempat_lahir', 'penduduks.jenis_kelamin', 'penduduks.alamat', 'penduduks.agama', 'penduduks.no_hp', 'jenis_surats.name_surat')
+            ->where('pengajuans.id', $id)
+            ->firstOrFail();
+        // dd($pengajuans);
+        return response()->json([
+            'success' => true,
+            'status' => 200,
+            'message' => 'Detail Data Pengajuan',
+            'data' => $pengajuans
+        ]);
+    }
+
 
     //Jenis Surat
     /**

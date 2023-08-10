@@ -10,14 +10,6 @@
 (function ($) {
   'use strict'
 
-  setTimeout(function () {
-    if (window.___browserSync___ === undefined && Number(localStorage.getItem('DesaApar:Demo:MessageShowed')) < Date.now()) {
-      localStorage.setItem('DesaApar:Demo:MessageShowed', (Date.now()) + (15 * 60 * 1000))
-      // eslint-disable-next-line no-alert
-      alert('Dashboard Pegawai, \nSelamat Datang Di Dashboard Pegawai Desa Apar!')
-    }
-  }, 1000)
-
   function capitalizeFirstLetter(string) {
     return string.charAt(0).toUpperCase() + string.slice(1)
   }

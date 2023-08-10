@@ -3,7 +3,7 @@
       <!-- Brand Logo -->
       <a href="index3.html" class="brand-link">
           <img src="{{ asset('kota-pariaman.png') }}" alt="Kota Pariaman" class="brand-image">
-          <span class="brand-text font-weight-light">AdminLTE 3</span>
+          <span class="brand-text font-weight-light">Desa Apar</span>
       </a>
 
       <!-- Sidebar -->
@@ -15,7 +15,9 @@
                       alt="User Image">
               </div>
               <div class="info">
-                  <a href="#" class="d-block">Pemerintah Desa Apar</a>
+                  <a href="#" class="d-block"><?php
+                  echo Session::get('username');
+                  ?></a>
               </div>
           </div>
 
@@ -98,6 +100,15 @@
                               Gallery
                           </p>
                       </a>
+                  </li>
+                  <li class="nav-item" style="margin-left: 5px;">
+                      <form action="{{ route('pegawai.logout') }}" method="post">
+                          @csrf
+                          <button type="submit" class="nav-link" onclick="toggleActive(this)"
+                              style="border: none; background: none; color: #c2c7d0; margin-left: -62px;"><i
+                                  class="nav-icon fa fa-arrow-circle-right"></i>
+                              Log Out </button>
+                      </form>
                   </li>
               </ul>
           </nav>

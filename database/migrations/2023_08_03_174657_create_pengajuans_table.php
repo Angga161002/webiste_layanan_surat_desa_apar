@@ -43,7 +43,7 @@ return new class extends Migration
             $table->string('name_pasangan')->nullable();
             $table->string('keterangan', 100)->nullable();
             $table->string('jenis_usaha')->nullable();
-            $table->string('status');
+            $table->enum('status', ['0', '1']);
             $table->timestamps();
 
             $table->foreign('nik_penduduk')->references('nik')->on('penduduks');
