@@ -33,6 +33,10 @@
                     <div class="card">
                         <div class="card-header">
                             <h3 class="card-title">Table List Data Pengajuan</h3>
+                            <a href="{{ route('penduduk.tambahpengajuan') }}">
+                                <button class="btn btn-sm btn-primary float-right"><img
+                                        src="{{ asset('img') }}/plus-icon.svg" class="mr-1">Tambah Pengajuan</button>
+                            </a>
                         </div>
                         <!-- /.card-header -->
                         <div class="card-body">

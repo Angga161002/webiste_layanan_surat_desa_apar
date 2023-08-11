@@ -22,6 +22,7 @@ return new class extends Migration
             $table->string('nik_ibu', 16)->nullable();
             $table->string('name_orang_tua')->nullable();
             $table->string('nik_orang_tua', 16)->nullable();
+            $table->string('name_jenazah')->nullable();
             $table->date('tanggal_kematian')->nullable();
             $table->datetime('waktu_kematian')->nullable();
             $table->string('sebab_kematian')->nullable();
@@ -32,6 +33,8 @@ return new class extends Migration
             $table->string('status_ibu')->nullable();
             $table->string('status_ayah')->nullable();
             $table->string('name_bayi')->nullable();
+            $table->enum('jenis_kelamin_bayi', ['0', '1'])->nullable();
+            $table->string('tanggal_lahir_bayi')->nullable();
             $table->datetime('waktu_lahir')->nullable();
             $table->string('tempat_dilahirkan')->nullable();
             $table->string('panjang_bayi')->nullable();

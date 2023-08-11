@@ -168,8 +168,19 @@ class PendudukController extends Controller
             $pengajuans->nik_ibu = $request->nik_ibu;
             $pengajuans->saksi_1 = $request->saksi_1;
             $pengajuans->saksi_2 = $request->saksi_2;
+            $pengajuans->name_jenazah = $request->name_jenazah;
+            $pengajuans->tanggal_kematian = $request->tanggal_kematian;
+            $pengajuans->waktu_kematian = $request->waktu_kematian;
+            $pengajuans->sebab_kematian = $request->sebab_kematian;
+            $pengajuans->tempat_kematian = $request->tempat_kematian;
+            $pengajuans->saksi_keterangan_kematian = $request->saksi_keterangan_kematian;
+            $pengajuans->jenis_usaha = $request->jenis_usaha;
+            $pengajuans->keterangan = $request->keterangan;
+            $pengajuans->status_orang_tua = $request->status_orang_tua;
+            $pengajuans->name_orang_tua = $request->name_orang_tua;
+            $pengajuans->nik_orang_tua = $request->nik_orang_tua;
             $pengajuans->save();
-            return redirect()->route('penduduk')->with('success', 'Pengajuan Surat Berhasil, Silahkan Cek Status Surat di Table Pengajuan!');
+            return redirect()->route('penduduk.pengajuan')->with('success', 'Pengajuan Surat Berhasil, Silahkan Cek Status Surat di Table Pengajuan!');
         } catch (\Exception $e) {
             return back()->with('error', 'Pengajuan Surat Gagal!: ' . $e->getMessage());
         }
@@ -211,6 +222,17 @@ class PendudukController extends Controller
             $pengajuans->nik_ibu = $request->nik_ibu;
             $pengajuans->saksi_1 = $request->saksi_1;
             $pengajuans->saksi_2 = $request->saksi_2;
+            $pengajuans->name_jenazah = $request->name_jenazah;
+            $pengajuans->tanggal_kematian = $request->tanggal_kematian;
+            $pengajuans->waktu_kematian = $request->waktu_kematian;
+            $pengajuans->sebab_kematian = $request->sebab_kematian;
+            $pengajuans->tempat_kematian = $request->tempat_kematian;
+            $pengajuans->saksi_keterangan_kematian = $request->saksi_keterangan_kematian;
+            $pengajuans->jenis_usaha = $request->jenis_usaha;
+            $pengajuans->keterangan = $request->keterangan;
+            $pengajuans->status_orang_tua = $request->status_orang_tua;
+            $pengajuans->name_orang_tua = $request->name_orang_tua;
+            $pengajuans->nik_orang_tua = $request->nik_orang_tua;
             $pengajuans->save();
             return redirect()->route('penduduk.pengajuan')->with('success', 'Data Pengajuan Berhasil Diedit!');
         } catch (\Exception $e) {
