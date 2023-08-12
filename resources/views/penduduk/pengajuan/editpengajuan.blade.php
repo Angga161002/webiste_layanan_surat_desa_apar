@@ -1,5 +1,15 @@
 @section('title', 'Dashboard Penduduk')
 
+<style>
+    #id_jenis_surat {
+        display: none;
+    }
+
+    #nik_penduduk {
+        display: none;
+    }
+</style>
+
 @include('layouts.header')
 
 @include('layouts.navbar')
@@ -46,20 +56,20 @@
                                         value="{{ $pengajuans->id }}">
                                 </div>
                                 <div class="form-group">
-                                    <label for="nik">NIK</label>
-                                    <input type="text" name="nik" disabled value="{{ $penduduk->nik }}"
-                                        class="form-control" id="nik" placeholder="Enter NIK Anda" required
-                                        pattern="[0-9]{16}">
+                                    <label for="nik_penduduk_disable">NIK</label>
+                                    <input type="text" name="nik_penduduk_disable" disabled
+                                        value="{{ $penduduk->nik }}" class="form-control" id="nik_penduduk_disable"
+                                        placeholder="Enter NIK Anda" required pattern="[0-9]{16}">
                                 </div>
                                 <div class="form-group">
-                                    <input type="hidden" name="nik_penduduk" disabled value="{{ $penduduk->nik }}"
+                                    <input type="text" name="nik_penduduk" value="{{ $penduduk->nik }}"
                                         class="form-control" id="nik_penduduk" placeholder="Enter NIK Anda" required
                                         pattern="[0-9]{16}">
                                 </div>
                                 <div class="form-group">
-                                    <label for="id_jenis_surat">Pilih Jenis Surat</label>
-                                    <select required name="id_jenis_surat" class="form-control" id="id_jenis_surat"
-                                        onchange="toggleJenisSurat()">
+                                    <label for="id_jenis_surat_disable">Pilih Jenis Surat</label>
+                                    <select required name="id_jenis_surat_disable" disabled class="form-control"
+                                        id="id_jenis_surat_disable">
                                         <option value="">Pilih Jenis Surat</option>
                                         <option value="1"
                                             {{ $pengajuans->id_jenis_surat === 1 ? 'selected' : '' }}>Surat Keterangan
@@ -75,13 +85,58 @@
                                             Usaha</option>
                                         <option value="5"
                                             {{ $pengajuans->id_jenis_surat === 5 ? 'selected' : '' }}>Surat Keterangan
+                                            Pengantar</option>
+                                        <option value="6"
+                                            {{ $pengajuans->id_jenis_surat === 6 ? 'selected' : '' }}>Surat Keterangan
                                             Kelakuan Baik</option>
+                                        <option value="7"
+                                            {{ $pengajuans->id_jenis_surat === 7 ? 'selected' : '' }}>Surat Keterangan
+                                            Ijin Orang Tua / Wali</option>
+                                        <option value="8"
+                                            {{ $pengajuans->id_jenis_surat === 8 ? 'selected' : '' }}>Surat Keterangan
+                                            Beda Nama</option>
+                                        <option value="9"
+                                            {{ $pengajuans->id_jenis_surat === 9 ? 'selected' : '' }}>Surat Keterangan
+                                            Belum / Tidak Bekerja</option>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <select required name="id_jenis_surat" class="form-control" id="id_jenis_surat">
+                                        <option value="">Pilih Jenis Surat</option>
+                                        <option value="1"
+                                            {{ $pengajuans->id_jenis_surat === 1 ? 'selected' : '' }}>Surat Keterangan
+                                            Tidak Mampu</option>
+                                        <option value="2"
+                                            {{ $pengajuans->id_jenis_surat === 2 ? 'selected' : '' }}>Surat Kelahiran
+                                        </option>
+                                        <option value="3"
+                                            {{ $pengajuans->id_jenis_surat === 3 ? 'selected' : '' }}>Surat Kematian
+                                        </option>
+                                        <option value="4"
+                                            {{ $pengajuans->id_jenis_surat === 4 ? 'selected' : '' }}>Surat Keterangan
+                                            Usaha</option>
+                                        <option value="5"
+                                            {{ $pengajuans->id_jenis_surat === 5 ? 'selected' : '' }}>Surat Keterangan
+                                            Pengantar</option>
+                                        <option value="6"
+                                            {{ $pengajuans->id_jenis_surat === 6 ? 'selected' : '' }}>Surat Keterangan
+                                            Kelakuan Baik</option>
+                                        <option value="7"
+                                            {{ $pengajuans->id_jenis_surat === 7 ? 'selected' : '' }}>Surat Keterangan
+                                            Ijin Orang Tua / Wali</option>
+                                        <option value="8"
+                                            {{ $pengajuans->id_jenis_surat === 8 ? 'selected' : '' }}>Surat Keterangan
+                                            Beda Nama</option>
+                                        <option value="9"
+                                            {{ $pengajuans->id_jenis_surat === 9 ? 'selected' : '' }}>Surat Keterangan
+                                            Belum / Tidak Bekerja</option>
                                     </select>
                                 </div>
                                 <div class="form-group">
                                     <label for="name">Name</label>
-                                    <input type="text" name="name" disabled required value="{{ $penduduk->name }}"
-                                        class="form-control" id="name" placeholder="Enter Name Anda">
+                                    <input type="text" name="name" disabled required
+                                        value="{{ $penduduk->name }}" class="form-control" id="name"
+                                        placeholder="Enter Name Anda">
                                 </div>
                                 <div class="form-group">
                                     <label for="tempat_lahir">Tempat Lahir</label>
@@ -138,37 +193,30 @@
                                     <label for="status_orang_tua">Status Orang Tua *</label>
                                     <select name="status_orang_tua" class="form-control" id="status_orang_tua">
                                         <option value="">Pilih Status Orang Tua</option>
-                                        <option value="masih hidup"
-                                            {{ $pengajuans->agama === 'masih hidup' ? 'selected' : '' }}>Masih Hidup
-                                        </option>
-                                        <option value="meninggal/luar desa"
-                                            {{ $pengajuans->agama === 'meninggal/luar desa' ? 'selected' : '' }}>
-                                            Meninggal/Luar Desa</option>
+                                        <option value="masih hidup">Masih Hidup</option>
+                                        <option value="meninggal/luar desa">Meninggal/Luar Desa</option>
                                     </select>
                                 </div>
                                 <div class="form-group" id="name_orang_tuas" style="display: none">
                                     <label for="name_orang_tua">Nama Orang Tua *</label>
                                     <input type="text" name="name_orang_tua" class="form-control"
-                                        id="name_orang_tua" value="{{ $pengajuans->name_orang_tua }}"
-                                        placeholder="Enter Name Orang Tua">
+                                        id="name_orang_tua" placeholder="Enter Name Orang Tua">
                                 </div>
                                 <div class="form-group" id="nik_orang_tuas" style="display: none">
                                     <label for="nik_orang_tua">NIK Orang Tua *</label>
                                     <input type="number" name="nik_orang_tua" class="form-control"
-                                        id="nik_orang_tua" value="{{ $pengajuans->nik_orang_tua }}"
-                                        placeholder="Enter NIK Orang Tua">
+                                        id="nik_orang_tua" placeholder="Enter NIK Orang Tua">
                                 </div>
-
-                                {{-- Surat Kelahiran --}}
-
                                 <div class="form-group" id="name_bayis" style="display: none">
-                                    <label for="name_bayi">Nama Bayi (Anak) *</label>
-                                    <input type="text" name="name_bayi" class="form-control" id="name_bayi"
-                                        value="{{ $pengajuans->name_bayi }}" placeholder="Enter Nama Bayi">
+                                    <label for="name_bayi">Nama Bayi (Anak)</label>
+                                    <input type="name_bayi" name="name_bayi" class="form-control"
+                                        id="name_bayi" value="{{ $pengajuans->name_bayi }}"
+                                        placeholder="Enter Nama Bayi">
                                 </div>
                                 <div class="form-group" id="jenis_kelamin_bayis" style="display: none">
-                                    <label for="jenis_kelamin_bayi">Jenis Kelamin Bayi *</label>
-                                    <select name="jenis_kelamin_bayi" class="form-control" id="jenis_kelamin_bayi">
+                                    <label for="jenis_kelamin_bayi">Jenis Kelamin Bayi</label>
+                                    <select name="jenis_kelamin_bayi" class="form-control"
+                                        id="jenis_kelamin_bayi">
                                         <option value="">Pilih Jenis Kelamin Bayi</option>
                                         <option value="L"
                                             {{ $pengajuans->jenis_kelamin_bayi === 'L' ? 'selected' : '' }}>Laki-laki
@@ -179,8 +227,9 @@
                                     </select>
                                 </div>
                                 <div class="form-group" id="tempat_dilahirkans" style="display: none">
-                                    <label for="tampat_dilahirkan">Tempat Dilahirkan *</label>
-                                    <select name="tempat_dilahirkan" class="form-control" id="tempat_dilahirkan">
+                                    <label for="tampat_dilahirkan">Tempat Dilahirkan</label>
+                                    <select name="tempat_dilahirkan" class="form-control"
+                                        id="tempat_dilahirkan">
                                         <option value="">Pilih Tempat Dilahirkan</option>
                                         <option value="rs/rsb"
                                             {{ $pengajuans->tempat_dilahirkan === 'rs/rsb' ? 'selected' : '' }}>RS/RSB
@@ -199,21 +248,28 @@
                                             Lainnya</option>
                                     </select>
                                 </div>
+                                {{-- <div class="form-group">
+                                    <label for="tempat_kelahiran">Tempat Kelahiran</label>
+                                    <input type="tempat_kelahiran" name="tempat_kelahiran"
+                                        class="form-control" id="tempat_kelahiran"
+                                        placeholder="Enter Tempat Kelahiran">
+                                </div> --}}
                                 <div class="form-group" id="tanggal_lahir_bayis" style="display: none">
-                                    <label for="tanggal_lahir_bayi">Tanggal Lahir Bayi *</label>
+                                    <label for="tanggal_lahir_bayi">Tanggal Lahir Bayi</label>
                                     <input type="date" name="tanggal_lahir_bayi" class="form-control"
                                         id="tanggal_lahir_bayi" value="{{ $pengajuans->tanggal_lahir_bayi }}"
                                         placeholder="Enter Tanggal Lahir Bayi">
                                 </div>
                                 <div class="form-group" id="waktu_lahir_bayis" style="display: none">
-                                    <label for="waktu_lahir_bayi">Waktu Lahir Bayi *</label>
+                                    <label for="waktu_lahir_bayi">Waktu Lahir Bayi</label>
                                     <input type="time" name="waktu_lahir_bayi" class="form-control"
                                         id="waktu_lahir_bayi" value="{{ $pengajuans->waktu_lahir }}"
                                         placeholder="Enter Waktu Lahir Bayi">
                                 </div>
                                 <div class="form-group" id="jenis_kelahirans" style="display: none">
-                                    <label for="jenis_kelahiran">Jenis Kelahiran *</label>
-                                    <select name="jenis_kelahiran" class="form-control" id="jenis_kelahiran">
+                                    <label for="jenis_kelahiran">Jenis Kelahiran</label>
+                                    <select name="jenis_kelahiran" class="form-control"
+                                        id="jenis_kelahiran">
                                         <option value="">Pilih Jenis Kelahiran</option>
                                         <option value="tunggal"
                                             {{ $pengajuans->jenis_kelahiran === 'tunggal' ? 'selected' : '' }}>Tunggal
@@ -227,19 +283,19 @@
                                         <option value="kembar 4"
                                             {{ $pengajuans->jenis_kelahiran === 'kembar 4' ? 'selected' : '' }}>Kembar
                                             4</option>
-                                        <option value="lainnya"
-                                            {{ $pengajuans->jenis_kelahiran === 'lainnya' ? 'selected' : '' }}>Lainnya
-                                        </option>
+                                        <option value="lainnya">Lainnya</option>
                                     </select>
                                 </div>
                                 <div class="form-group" id="kelahiran_kes" style="display: none">
-                                    <label for="kelahiran_ke">Kelahiran Ke *</label>
-                                    <input type="text" name="kelahiran_ke" class="form-control" id="kelahiran_ke"
-                                        value="{{ $pengajuans->kelahiran_ke }}" placeholder="Enter Kelahiran Ke">
+                                    <label for="kelahiran_ke">Kelahiran Ke</label>
+                                    <input type="text" name="kelahiran_ke" class="form-control"
+                                        id="kelahiran_ke" value="{{ $pengajuans->kelahiran_ke }}"
+                                        placeholder="Enter Kelahiran Ke">
                                 </div>
                                 <div class="form-group" id="penolong_kelahirans" style="display: none">
-                                    <label for="penolong_kelahiran">Penolong Kelahiran *</label>
-                                    <select name="penolong_kelahiran" class="form-control" id="penolong_kelahiran">
+                                    <label for="penolong_kelahiran">Penolong Kelahiran</label>
+                                    <select name="penolong_kelahiran" class="form-control"
+                                        id="penolong_kelahiran">
                                         <option value="">Pilih Penolong Kelahiran</option>
                                         <option value="dokter"
                                             {{ $pengajuans->penolong_kelahiran === 'dokter' ? 'selected' : '' }}>Dokter
@@ -256,14 +312,16 @@
                                     </select>
                                 </div>
                                 <div class="form-group" id="berat_bayis" style="display: none">
-                                    <label for="berat_bayi">Berat Bayi *</label>
-                                    <input type="text" name="berat_bayi" class="form-control" id="berat_bayi"
-                                        value="{{ $pengajuans->berat_bayi }}" placeholder="Enter Berat Bayi">
+                                    <label for="berat_bayi">Berat Bayi</label>
+                                    <input type="text" name="berat_bayi" class="form-control"
+                                        id="berat_bayi" value="{{ $pengajuans->berat_bayi }}"
+                                        placeholder="Enter Berat Bayi">
                                 </div>
                                 <div class="form-group" id="panjang_bayis" style="display: none">
-                                    <label for="panjang_bayi">Panjang Bayi *</label>
-                                    <input type="text" name="panjang_bayi" class="form-control" id="panjang_bayi"
-                                        value="{{ $pengajuans->panjang_bayi }}" placeholder="Enter Panjang Bayi">
+                                    <label for="panjang_bayi">Panjang Bayi</label>
+                                    <input type="text" name="panjang_bayi" class="form-control"
+                                        id="panjang_bayi" value="{{ $pengajuans->panjang_bayi }}"
+                                        placeholder="Enter Panjang Bayi">
                                 </div>
 
                                 {{-- Surat Kematian --}}
@@ -271,74 +329,48 @@
                                 <div class="form-group" id="name_jenazahs" style="display: none">
                                     <label for="name_jenazah">Nama Jenazah *</label>
                                     <input type="text" name="name_jenazah" class="form-control" id="name_jenazah"
-                                        value="{{ $pengajuans->name_jenazah }}" placeholder="Enter Nama Jenazah">
+                                        placeholder="Enter Nama Jenazah">
                                 </div>
                                 <div class="form-group" id="tanggal_kematians" style="display: none">
                                     <label for="tanggal_kematian">Tanggal Kematian *</label>
                                     <input type="date" name="tanggal_kematian" class="form-control"
-                                        id="tanggal_kematian" value="{{ $pengajuans->tanggal_kematian }}"
-                                        placeholder="Enter Tanggal Lahir Bayi">
+                                        id="tanggal_kematian" placeholder="Enter Tanggal Lahir Bayi">
                                 </div>
                                 <div class="form-group" id="waktu_kematians" style="display: none">
                                     <label for="waktu_kematian">Waktu Kematian *</label>
                                     <input type="time" name="waktu_kematian" class="form-control"
-                                        id="waktu_kematian" value="{{ $pengajuans->waktu_kematian }}"
-                                        placeholder="Enter Waktu Kematian">
+                                        id="waktu_kematian" placeholder="Enter Waktu Kematian">
                                 </div>
                                 <div class="form-group" id="sebab_kematians" style="display: none">
                                     <label for="sebab_kematian">Sebab Kematian *</label>
                                     <select name="sebab_kematian" class="form-control" id="sebab_kematian">
                                         <option value="">Pilih Sebab Kematian</option>
-                                        <option value="sakis biasa / tua"
-                                            {{ $pengajuans->sebab_kematian === 'sakis biasa / tua' ? 'selected' : '' }}>
-                                            Sakit Biasa / Tua</option>
-                                        <option value="wabah penyakit"
-                                            {{ $pengajuans->sebab_kematian === 'wabah penyakit' ? 'selected' : '' }}>
-                                            Wabah Penyakit</option>
-                                        <option value="kecelakaan"
-                                            {{ $pengajuans->sebab_kematian === 'kecelakaan' ? 'selected' : '' }}>
-                                            Kecelakaan</option>
-                                        <option value="kriminalitas"
-                                            {{ $pengajuans->sebab_kematian === 'kriminalitas' ? 'selected' : '' }}>
-                                            Kriminalitas</option>
-                                        <option value="bunuh diri"
-                                            {{ $pengajuans->sebab_kematian === 'bunuh diri' ? 'selected' : '' }}>Bunuh
-                                            Diri</option>
-                                        <option value="lainnya"
-                                            {{ $pengajuans->sebab_kematian === 'lainnya' ? 'selected' : '' }}>Lainnya
-                                        </option>
+                                        <option value="sakis biasa / tua">Sakit Biasa / Tua</option>
+                                        <option value="wabah penyakit">Wabah Penyakit</option>
+                                        <option value="kecelakaan">Kecelakaan</option>
+                                        <option value="kriminalitas">Kriminalitas</option>
+                                        <option value="bunuh diri">Bunuh Diri</option>
+                                        <option value="lainya">Lainya</option>
                                     </select>
                                 </div>
                                 <div class="form-group" id="tempat_kematians" style="display: none">
                                     <label for="tempat_kematian">Tempat Kematian *</label>
                                     <input type="text" name="tempat_kematian" class="form-control"
-                                        id="tempat_kematian" value="{{ $pengajuans->tempat_kematian }}"
-                                        placeholder="Enter Tempat Kematian">
+                                        id="tempat_kematian" placeholder="Enter Tempat Kematian">
                                 </div>
                                 <div class="form-group" id="saksi_keterangan_kematians" style="display: none">
                                     <label for="saksi_keterangan_kematian">Saksi Keterangan Kematian *</label>
                                     <select name="saksi_keterangan_kematian" class="form-control"
                                         id="saksi_keterangan_kematian">
                                         <option value="">Pilih Saksi Keterangan Kematian</option>
-                                        <option value="dokter"
-                                            {{ $pengajuans->saksi_keterangan_kematian === 'dokter' ? 'selected' : '' }}>
-                                            Dokter</option>
-                                        <option value="tenaga kesehatan"
-                                            {{ $pengajuans->saksi_keterangan_kematian === 'tenaga kesehatan' ? 'selected' : '' }}>
-                                            Tenaga Kesehatan</option>
-                                        <option value="kepolisian"
-                                            {{ $pengajuans->saksi_keterangan_kematian === 'kepolisian' ? 'selected' : '' }}>
-                                            Kepolisian</option>
-                                        <option value="lainnya"
-                                            {{ $pengajuans->saksi_keterangan_kematian === 'lainnya' ? 'selected' : '' }}>
-                                            Lainnya</option>
+                                        <option value="dokter">Dokter</option>
+                                        <option value="tenaga kesehatan">Tenaga Kesehatan</option>
+                                        <option value="kepolisian">Kepolisian</option>
+                                        <option value="lainnya">Lainnya</option>
                                     </select>
                                 </div>
-
-                                {{-- Surat Kematian, Kelahiran --}}
-
                                 <div class="form-group" id="status_ayahs" style="display: none">
-                                    <label for="status_ayah">Status Ayah *</label>
+                                    <label for="status_ayah">Status Ayah</label>
                                     <select name="status_ayah" class="form-control" id="status_ayah">
                                         <option value="">Pilih Status Ayah</option>
                                         <option value="masih hidup"
@@ -360,14 +392,14 @@
                                         value="{{ $pengajuans->nik_ayah }}" placeholder="Enter NIK Ayah">
                                 </div>
                                 <div class="form-group" id="status_ibus" style="display: none">
-                                    <label for="status_ibu">Status Ibu *</label>
+                                    <label for="status_ibu">Status Ibu</label>
                                     <select name="status_ibu" class="form-control" id="status_ibu">
                                         <option value="">Pilih Status Ibu</option>
                                         <option value="masih hidup"
                                             {{ $pengajuans->status_ibu === 'masih hidup' ? 'selected' : '' }}>Masih
                                             Hidup</option>
                                         <option value="meninggal/luar desa"
-                                            {{ $pengajuans->status_ibu === 'masih hidup' ? 'selected' : '' }}>
+                                            {{ $pengajuans->status_ibu === 'meninggal/luar desa' ? 'selected' : '' }}>
                                             Meninggal/Luar Desa</option>
                                     </select>
                                 </div>
@@ -382,14 +414,16 @@
                                         value="{{ $pengajuans->nik_ibu }}" placeholder="Enter NIK Ibu">
                                 </div>
                                 <div class="form-group" id="saksi_1s" style="display: none">
-                                    <label for="saksi_1">Saksi I *</label>
-                                    <input type="text" name="saksi_1" class="form-control" id="saksi_1"
-                                        value="{{ $pengajuans->saksi_1 }}" placeholder="Enter Saksi I">
+                                    <label for="saksi_1">Saksi I</label>
+                                    <input type="text" name="saksi_1" class="form-control"
+                                        id="saksi_1" value="{{ $pengajuans->saksi_1 }}"
+                                        placeholder="Enter Saksi I">
                                 </div>
                                 <div class="form-group" id="saksi_2s" style="display: none">
-                                    <label for="saksi_2">Saksi II *</label>
-                                    <input type="text" name="saksi_2" class="form-control" id="saksi_2"
-                                        value="{{ $pengajuans->saksi_2 }}" placeholder="Enter Saksi II">
+                                    <label for="saksi_2">Saksi II</label>
+                                    <input type="text" name="saksi_2" class="form-control"
+                                        id="saksi_2" value="{{ $pengajuans->saksi_2 }}"
+                                        placeholder="Enter Saksi II">
                                 </div>
 
                                 {{-- Surat Keterangan Usaha --}}
@@ -397,7 +431,7 @@
                                 <div class="form-group" id="jenis_usahas" style="display: none">
                                     <label for="jenis_usaha">Jenis Usaha *</label>
                                     <input type="text" name="jenis_usaha" class="form-control" id="jenis_usaha"
-                                        value="{{ $pengajuans->jenis_usaha }}" placeholder="Enter Jenis Usaha">
+                                        placeholder="Enter Jenis Usaha">
                                 </div>
 
                                 {{-- Surat Keterangan Pengantar, Usaha, Kelakuan Baik, Beda Nama --}}
@@ -405,11 +439,11 @@
                                 <div class="form-group" id="keterangans" style="display: none">
                                     <label for="keterangan">Keperluan *</label>
                                     <input type="text" name="keterangan" class="form-control" id="keterangan"
-                                        value="{{ $pengajuans->keterangan }}" placeholder="Enter Keperluan">
+                                        placeholder="Enter Keperluan">
                                 </div>
                                 <div class="form-group">
                                     <label for="no_hp">No Hp</label>
-                                    <input type="number" required name="no_hp" disabled
+                                    <input type="number" name="no_hp" disabled
                                         value="{{ $penduduk->no_hp }}" class="form-control" id="no_hp"
                                         placeholder="Enter No Hp">
                                 </div>
@@ -446,7 +480,7 @@
         var statusOrangTuasDiv = document.getElementById("status_orang_tuas");
         var saksi1sDiv = document.getElementById("saksi_1s");
         var saksi2sDiv = document.getElementById("saksi_2s");
-        // Surat Kelahiran
+        //Surat Kelahiran
         var nameBayisDiv = document.getElementById("name_bayis");
         var jenisKelaminBayisDiv = document.getElementById("jenis_kelamin_bayis");
         var tempatDilahirkansDiv = document.getElementById("tempat_dilahirkans");
@@ -464,7 +498,6 @@
         var sebabKematiansDiv = document.getElementById("sebab_kematians");
         var tempatKematiansDiv = document.getElementById("tempat_kematians");
         var saksiKetranganKematiansDiv = document.getElementById("saksi_keterangan_kematians");
-        // Surat Kematian, Kelahiran
         var statusAyahsDiv = document.getElementById("status_ayahs");
         var statusIbusDiv = document.getElementById("status_ibus");
         var saksi1sDiv = document.getElementById("saksi_1s");
@@ -473,44 +506,11 @@
         var jenisUsahasDiv = document.getElementById("jenis_usahas");
         // Surat Keterangan Pengantar, Usaha, Kelakuan Baik, Beda Nama
         var keterangansDiv = document.getElementById("keterangans");
-        var nameOrangTuaDiv = document.getElementById("name_orang_tuas");
-        var nikOrangTuasDiv = document.getElementById("nik_orang_tuas");
-        var nameAyahDiv = document.getElementById("name_ayahs");
-        var nikAyahDiv = document.getElementById("nik_ayahs");
-        var nameIbuDiv = document.getElementById("name_ibus");
-        var nikIbuDiv = document.getElementById("nik_ibus");
 
-        if (jenissurat === "1" || jenissurat === "7" || jenissurat === "9") {
-            nameBayisDiv.style.display = "none";
-            jenisKelaminBayisDiv.style.display = "none";
-            tempatDilahirkansDiv.style.display = "none";
-            tanggalLahirBayisDiv.style.display = "none";
-            waktuLahirBayisDiv.style.display = "none";
-            jenisKelahiransDiv.style.display = "none";
-            kelahiranKesDiv.style.display = "none";
-            penolongKelahiransDiv.style.display = "none";
-            beratBayisDiv.style.display = "none";
-            panjangBayisDiv.style.display = "none";
+        if (jenissurat === 1 || jenissurat === 7 || jenissurat === 9) {
             statusOrangTuasDiv.style.display = "block";
-            statusAyahsDiv.style.display = "none";
-            statusIbusDiv.style.display = "none";
-            saksi1sDiv.style.display = "none";
-            saksi2sDiv.style.display = "none";
-            nameJenazahsDiv.style.display = "none";
-            tanggalKematiansDiv.style.display = "none";
-            waktuKematiansDiv.style.display = "none";
-            sebabKematiansDiv.style.display = "none";
-            tempatKematiansDiv.style.display = "none";
-            saksiKetranganKematiansDiv.style.display = "none";
-            jenisUsahasDiv.style.display = "none";
-            nameOrangTuaDiv.style.display = "none";
-            nikOrangTuasDiv.style.display = "none";
-            nameAyahDiv.style.display = "none";
-            nikAyahDiv.style.display = "none";
-            nameIbuDiv.style.display = "none";
-            nikIbuDiv.style.display = "none";
             keterangansDiv.style.display = "block";
-        } else if (jenissurat === "2") {
+        } else if (jenissurat === 2) {
             nameBayisDiv.style.display = "block";
             jenisKelaminBayisDiv.style.display = "block";
             tempatDilahirkansDiv.style.display = "block";
@@ -521,114 +521,25 @@
             penolongKelahiransDiv.style.display = "block";
             beratBayisDiv.style.display = "block";
             panjangBayisDiv.style.display = "block";
-            statusOrangTuasDiv.style.display = "none";
             statusAyahsDiv.style.display = "block";
             statusIbusDiv.style.display = "block";
             saksi1sDiv.style.display = "block";
             saksi2sDiv.style.display = "block";
-            nameJenazahsDiv.style.display = "none";
-            tanggalKematiansDiv.style.display = "none";
-            waktuKematiansDiv.style.display = "none";
-            sebabKematiansDiv.style.display = "none";
-            tempatKematiansDiv.style.display = "none";
-            saksiKetranganKematiansDiv.style.display = "none";
-            jenisUsahasDiv.style.display = "none";
-            nameOrangTuaDiv.style.display = "none";
-            nikOrangTuasDiv.style.display = "none";
-            nameAyahDiv.style.display = "none";
-            nikAyahDiv.style.display = "none";
-            nameIbuDiv.style.display = "none";
-            nikIbuDiv.style.display = "none";
-            keterangansDiv.style.display = "none";
-        } else if (jenissurat === "3") {
-            nameBayisDiv.style.display = "none";
-            jenisKelaminBayisDiv.style.display = "none";
-            tempatDilahirkansDiv.style.display = "none";
-            tanggalLahirBayisDiv.style.display = "none";
-            waktuLahirBayisDiv.style.display = "none";
-            jenisKelahiransDiv.style.display = "none";
-            kelahiranKesDiv.style.display = "none";
-            penolongKelahiransDiv.style.display = "none";
-            beratBayisDiv.style.display = "none";
-            panjangBayisDiv.style.display = "none";
-            statusOrangTuasDiv.style.display = "none";
-            statusAyahsDiv.style.display = "block";
-            statusIbusDiv.style.display = "block";
-            saksi1sDiv.style.display = "block";
-            saksi2sDiv.style.display = "block";
+        } else if (jenissurat === 3) {
             nameJenazahsDiv.style.display = "block";
             tanggalKematiansDiv.style.display = "block";
             waktuKematiansDiv.style.display = "block";
             sebabKematiansDiv.style.display = "block";
             tempatKematiansDiv.style.display = "block";
             saksiKetranganKematiansDiv.style.display = "block";
-            jenisUsahasDiv.style.display = "none";
-            nameOrangTuaDiv.style.display = "none";
-            nikOrangTuasDiv.style.display = "none";
-            nameAyahDiv.style.display = "none";
-            nikAyahDiv.style.display = "none";
-            nameIbuDiv.style.display = "none";
-            nikIbuDiv.style.display = "none";
-            keterangansDiv.style.display = "none";
-        } else if (jenissurat === "4") {
-            nameBayisDiv.style.display = "none";
-            jenisKelaminBayisDiv.style.display = "none";
-            tempatDilahirkansDiv.style.display = "none";
-            tanggalLahirBayisDiv.style.display = "none";
-            waktuLahirBayisDiv.style.display = "none";
-            jenisKelahiransDiv.style.display = "none";
-            kelahiranKesDiv.style.display = "none";
-            penolongKelahiransDiv.style.display = "none";
-            beratBayisDiv.style.display = "none";
-            panjangBayisDiv.style.display = "none";
-            statusOrangTuasDiv.style.display = "none";
-            statusAyahsDiv.style.display = "none";
-            statusIbusDiv.style.display = "none";
-            saksi1sDiv.style.display = "none";
-            saksi2sDiv.style.display = "none";
-            nameJenazahsDiv.style.display = "none";
-            tanggalKematiansDiv.style.display = "none";
-            waktuKematiansDiv.style.display = "none";
-            sebabKematiansDiv.style.display = "none";
-            tempatKematiansDiv.style.display = "none";
-            saksiKetranganKematiansDiv.style.display = "none";
+            statusAyahsDiv.style.display = "block";
+            statusIbusDiv.style.display = "block";
+            saksi1sDiv.style.display = "block";
+            saksi2sDiv.style.display = "block";
+        } else if (jenissurat === 4) {
             jenisUsahasDiv.style.display = "block";
-            nameOrangTuaDiv.style.display = "none";
-            nikOrangTuasDiv.style.display = "none";
-            nameAyahDiv.style.display = "none";
-            nikAyahDiv.style.display = "none";
-            nameIbuDiv.style.display = "none";
-            nikIbuDiv.style.display = "none";
             keterangansDiv.style.display = "block";
-        } else if (jenissurat === "5" || jenissurat === "6" || jenissurat === "8") {
-            nameBayisDiv.style.display = "none";
-            jenisKelaminBayisDiv.style.display = "none";
-            tempatDilahirkansDiv.style.display = "none";
-            tanggalLahirBayisDiv.style.display = "none";
-            waktuLahirBayisDiv.style.display = "none";
-            jenisKelahiransDiv.style.display = "none";
-            kelahiranKesDiv.style.display = "none";
-            penolongKelahiransDiv.style.display = "none";
-            beratBayisDiv.style.display = "none";
-            panjangBayisDiv.style.display = "none";
-            statusOrangTuasDiv.style.display = "none";
-            statusAyahsDiv.style.display = "none";
-            statusIbusDiv.style.display = "none";
-            saksi1sDiv.style.display = "none";
-            saksi2sDiv.style.display = "none";
-            nameJenazahsDiv.style.display = "none";
-            tanggalKematiansDiv.style.display = "none";
-            waktuKematiansDiv.style.display = "none";
-            sebabKematiansDiv.style.display = "none";
-            tempatKematiansDiv.style.display = "none";
-            saksiKetranganKematiansDiv.style.display = "none";
-            jenisUsahasDiv.style.display = "none";
-            nameOrangTuaDiv.style.display = "none";
-            nikOrangTuasDiv.style.display = "none";
-            nameAyahDiv.style.display = "none";
-            nikAyahDiv.style.display = "none";
-            nameIbuDiv.style.display = "none";
-            nikIbuDiv.style.display = "none";
+        } else if (jenissurat === 5 || jenissurat === 6 || jenissurat === 8) {
             keterangansDiv.style.display = "block";
         } else {
             nameBayisDiv.style.display = "none";
@@ -641,37 +552,17 @@
             penolongKelahiransDiv.style.display = "none";
             beratBayisDiv.style.display = "none";
             panjangBayisDiv.style.display = "none";
-            statusOrangTuasDiv.style.display = "none";
             statusAyahsDiv.style.display = "none";
             statusIbusDiv.style.display = "none";
             saksi1sDiv.style.display = "none";
             saksi2sDiv.style.display = "none";
-            nameJenazahsDiv.style.display = "none";
-            tanggalKematiansDiv.style.display = "none";
-            waktuKematiansDiv.style.display = "none";
-            sebabKematiansDiv.style.display = "none";
-            tempatKematiansDiv.style.display = "none";
-            saksiKetranganKematiansDiv.style.display = "none";
-            jenisUsahasDiv.style.display = "none";
-            nameOrangTuaDiv.style.display = "none";
-            nikOrangTuasDiv.style.display = "none";
-            nameAyahDiv.style.display = "none";
-            nikAyahDiv.style.display = "none";
-            nameIbuDiv.style.display = "none";
-            nikIbuDiv.style.display = "none";
-            keterangansDiv.style.display = "none";
         }
     }
     checkidjenissurat();
 </script>
 <script>
-    function toggleJenisSurat() {
+    document.addEventListener("DOMContentLoaded", function() {
         var jenisSuratSelect = document.getElementById("id_jenis_surat");
-        // Surat Keterangan Tidak Mampu, Ijin Orang Tua / Wali, Pernyataan Belum / Tidak Bekerja
-        var statusOrangTuasDiv = document.getElementById("status_orang_tuas");
-        var saksi1sDiv = document.getElementById("saksi_1s");
-        var saksi2sDiv = document.getElementById("saksi_2s");
-        // Surat Kelahiran
         var nameBayisDiv = document.getElementById("name_bayis");
         var jenisKelaminBayisDiv = document.getElementById("jenis_kelamin_bayis");
         var tempatDilahirkansDiv = document.getElementById("tempat_dilahirkans");
@@ -682,211 +573,45 @@
         var penolongKelahiransDiv = document.getElementById("penolong_kelahirans");
         var beratBayisDiv = document.getElementById("berat_bayis");
         var panjangBayisDiv = document.getElementById("panjang_bayis");
-        // Surat Kematian
-        var nameJenazahsDiv = document.getElementById("name_jenazahs");
-        var tanggalKematiansDiv = document.getElementById("tanggal_kematians");
-        var waktuKematiansDiv = document.getElementById("waktu_kematians");
-        var sebabKematiansDiv = document.getElementById("sebab_kematians");
-        var tempatKematiansDiv = document.getElementById("tempat_kematians");
-        var saksiKetranganKematiansDiv = document.getElementById("saksi_keterangan_kematians");
-        // Surat Kematian, Kelahiran
         var statusAyahsDiv = document.getElementById("status_ayahs");
         var statusIbusDiv = document.getElementById("status_ibus");
         var saksi1sDiv = document.getElementById("saksi_1s");
         var saksi2sDiv = document.getElementById("saksi_2s");
-        // Surat Keterangan Usaha
-        var jenisUsahasDiv = document.getElementById("jenis_usahas");
-        // Surat Keterangan Pengantar, Usaha, Kelakuan Baik, Beda Nama
-        var keterangansDiv = document.getElementById("keterangans");
-        var nameOrangTuaDiv = document.getElementById("name_orang_tuas");
-        var nikOrangTuasDiv = document.getElementById("nik_orang_tuas");
-        var nameAyahDiv = document.getElementById("name_ayahs");
-        var nikAyahDiv = document.getElementById("nik_ayahs");
-        var nameIbuDiv = document.getElementById("name_ibus");
-        var nikIbuDiv = document.getElementById("nik_ibus");
 
-        if (jenisSuratSelect.value === "1" || jenisSuratSelect.value === "7" || jenisSuratSelect.value === "9") {
-            nameBayisDiv.style.display = "none";
-            jenisKelaminBayisDiv.style.display = "none";
-            tempatDilahirkansDiv.style.display = "none";
-            tanggalLahirBayisDiv.style.display = "none";
-            waktuLahirBayisDiv.style.display = "none";
-            jenisKelahiransDiv.style.display = "none";
-            kelahiranKesDiv.style.display = "none";
-            penolongKelahiransDiv.style.display = "none";
-            beratBayisDiv.style.display = "none";
-            panjangBayisDiv.style.display = "none";
-            statusOrangTuasDiv.style.display = "block";
-            statusAyahsDiv.style.display = "none";
-            statusIbusDiv.style.display = "none";
-            saksi1sDiv.style.display = "none";
-            saksi2sDiv.style.display = "none";
-            nameJenazahsDiv.style.display = "none";
-            tanggalKematiansDiv.style.display = "none";
-            waktuKematiansDiv.style.display = "none";
-            sebabKematiansDiv.style.display = "none";
-            tempatKematiansDiv.style.display = "none";
-            saksiKetranganKematiansDiv.style.display = "none";
-            jenisUsahasDiv.style.display = "none";
-            nameOrangTuaDiv.style.display = "none";
-            nikOrangTuasDiv.style.display = "none";
-            nameAyahDiv.style.display = "none";
-            nikAyahDiv.style.display = "none";
-            nameIbuDiv.style.display = "none";
-            nikIbuDiv.style.display = "none";
-            keterangansDiv.style.display = "block";
-        } else if (jenisSuratSelect.value === "2") {
-            nameBayisDiv.style.display = "block";
-            jenisKelaminBayisDiv.style.display = "block";
-            tempatDilahirkansDiv.style.display = "block";
-            tanggalLahirBayisDiv.style.display = "block";
-            waktuLahirBayisDiv.style.display = "block";
-            jenisKelahiransDiv.style.display = "block";
-            kelahiranKesDiv.style.display = "block";
-            penolongKelahiransDiv.style.display = "block";
-            beratBayisDiv.style.display = "block";
-            panjangBayisDiv.style.display = "block";
-            statusOrangTuasDiv.style.display = "none";
-            statusAyahsDiv.style.display = "block";
-            statusIbusDiv.style.display = "block";
-            saksi1sDiv.style.display = "block";
-            saksi2sDiv.style.display = "block";
-            nameJenazahsDiv.style.display = "none";
-            tanggalKematiansDiv.style.display = "none";
-            waktuKematiansDiv.style.display = "none";
-            sebabKematiansDiv.style.display = "none";
-            tempatKematiansDiv.style.display = "none";
-            saksiKetranganKematiansDiv.style.display = "none";
-            jenisUsahasDiv.style.display = "none";
-            nameOrangTuaDiv.style.display = "none";
-            nikOrangTuasDiv.style.display = "none";
-            nameAyahDiv.style.display = "none";
-            nikAyahDiv.style.display = "none";
-            nameIbuDiv.style.display = "none";
-            nikIbuDiv.style.display = "none";
-            keterangansDiv.style.display = "none";
-        } else if (jenisSuratSelect.value === "3") {
-            nameBayisDiv.style.display = "none";
-            jenisKelaminBayisDiv.style.display = "none";
-            tempatDilahirkansDiv.style.display = "none";
-            tanggalLahirBayisDiv.style.display = "none";
-            waktuLahirBayisDiv.style.display = "none";
-            jenisKelahiransDiv.style.display = "none";
-            kelahiranKesDiv.style.display = "none";
-            penolongKelahiransDiv.style.display = "none";
-            beratBayisDiv.style.display = "none";
-            panjangBayisDiv.style.display = "none";
-            statusOrangTuasDiv.style.display = "none";
-            statusAyahsDiv.style.display = "block";
-            statusIbusDiv.style.display = "block";
-            saksi1sDiv.style.display = "block";
-            saksi2sDiv.style.display = "block";
-            nameJenazahsDiv.style.display = "block";
-            tanggalKematiansDiv.style.display = "block";
-            waktuKematiansDiv.style.display = "block";
-            sebabKematiansDiv.style.display = "block";
-            tempatKematiansDiv.style.display = "block";
-            saksiKetranganKematiansDiv.style.display = "block";
-            jenisUsahasDiv.style.display = "none";
-            nameOrangTuaDiv.style.display = "none";
-            nikOrangTuasDiv.style.display = "none";
-            nameAyahDiv.style.display = "none";
-            nikAyahDiv.style.display = "none";
-            nameIbuDiv.style.display = "none";
-            nikIbuDiv.style.display = "none";
-            keterangansDiv.style.display = "none";
-        } else if (jenisSuratSelect.value === "4") {
-            nameBayisDiv.style.display = "none";
-            jenisKelaminBayisDiv.style.display = "none";
-            tempatDilahirkansDiv.style.display = "none";
-            tanggalLahirBayisDiv.style.display = "none";
-            waktuLahirBayisDiv.style.display = "none";
-            jenisKelahiransDiv.style.display = "none";
-            kelahiranKesDiv.style.display = "none";
-            penolongKelahiransDiv.style.display = "none";
-            beratBayisDiv.style.display = "none";
-            panjangBayisDiv.style.display = "none";
-            statusOrangTuasDiv.style.display = "none";
-            statusAyahsDiv.style.display = "none";
-            statusIbusDiv.style.display = "none";
-            saksi1sDiv.style.display = "none";
-            saksi2sDiv.style.display = "none";
-            nameJenazahsDiv.style.display = "none";
-            tanggalKematiansDiv.style.display = "none";
-            waktuKematiansDiv.style.display = "none";
-            sebabKematiansDiv.style.display = "none";
-            tempatKematiansDiv.style.display = "none";
-            saksiKetranganKematiansDiv.style.display = "none";
-            jenisUsahasDiv.style.display = "block";
-            nameOrangTuaDiv.style.display = "none";
-            nikOrangTuasDiv.style.display = "none";
-            nameAyahDiv.style.display = "none";
-            nikAyahDiv.style.display = "none";
-            nameIbuDiv.style.display = "none";
-            nikIbuDiv.style.display = "none";
-            keterangansDiv.style.display = "block";
-        } else if (jenisSuratSelect.value === "5" || jenisSuratSelect.value === "6" || jenisSuratSelect.value === "8") {
-            nameBayisDiv.style.display = "none";
-            jenisKelaminBayisDiv.style.display = "none";
-            tempatDilahirkansDiv.style.display = "none";
-            tanggalLahirBayisDiv.style.display = "none";
-            waktuLahirBayisDiv.style.display = "none";
-            jenisKelahiransDiv.style.display = "none";
-            kelahiranKesDiv.style.display = "none";
-            penolongKelahiransDiv.style.display = "none";
-            beratBayisDiv.style.display = "none";
-            panjangBayisDiv.style.display = "none";
-            statusOrangTuasDiv.style.display = "none";
-            statusAyahsDiv.style.display = "none";
-            statusIbusDiv.style.display = "none";
-            saksi1sDiv.style.display = "none";
-            saksi2sDiv.style.display = "none";
-            nameJenazahsDiv.style.display = "none";
-            tanggalKematiansDiv.style.display = "none";
-            waktuKematiansDiv.style.display = "none";
-            sebabKematiansDiv.style.display = "none";
-            tempatKematiansDiv.style.display = "none";
-            saksiKetranganKematiansDiv.style.display = "none";
-            jenisUsahasDiv.style.display = "none";
-            nameOrangTuaDiv.style.display = "none";
-            nikOrangTuasDiv.style.display = "none";
-            nameAyahDiv.style.display = "none";
-            nikAyahDiv.style.display = "none";
-            nameIbuDiv.style.display = "none";
-            nikIbuDiv.style.display = "none";
-            keterangansDiv.style.display = "block";
-        } else {
-            nameBayisDiv.style.display = "none";
-            jenisKelaminBayisDiv.style.display = "none";
-            tempatDilahirkansDiv.style.display = "none";
-            tanggalLahirBayisDiv.style.display = "none";
-            waktuLahirBayisDiv.style.display = "none";
-            jenisKelahiransDiv.style.display = "none";
-            kelahiranKesDiv.style.display = "none";
-            penolongKelahiransDiv.style.display = "none";
-            beratBayisDiv.style.display = "none";
-            panjangBayisDiv.style.display = "none";
-            statusOrangTuasDiv.style.display = "none";
-            statusAyahsDiv.style.display = "none";
-            statusIbusDiv.style.display = "none";
-            saksi1sDiv.style.display = "none";
-            saksi2sDiv.style.display = "none";
-            nameJenazahsDiv.style.display = "none";
-            tanggalKematiansDiv.style.display = "none";
-            waktuKematiansDiv.style.display = "none";
-            sebabKematiansDiv.style.display = "none";
-            tempatKematiansDiv.style.display = "none";
-            saksiKetranganKematiansDiv.style.display = "none";
-            jenisUsahasDiv.style.display = "none";
-            nameOrangTuaDiv.style.display = "none";
-            nikOrangTuasDiv.style.display = "none";
-            nameAyahDiv.style.display = "none";
-            nikAyahDiv.style.display = "none";
-            nameIbuDiv.style.display = "none";
-            nikIbuDiv.style.display = "none";
-            keterangansDiv.style.display = "none";
-        }
-    }
+        jenisSuratSelect.addEventListener("change", function() {
+            if (jenisSuratSelect.value === "2") {
+                nameBayisDiv.style.display = "block";
+                jenisKelaminBayisDiv.style.display = "block";
+                tempatDilahirkansDiv.style.display = "block";
+                tanggalLahirBayisDiv.style.display = "block";
+                waktuLahirBayisDiv.style.display = "block";
+                jenisKelahiransDiv.style.display = "block";
+                kelahiranKesDiv.style.display = "block";
+                penolongKelahiransDiv.style.display = "block";
+                beratBayisDiv.style.display = "block";
+                panjangBayisDiv.style.display = "block";
+                statusAyahsDiv.style.display = "block";
+                statusIbusDiv.style.display = "block";
+                saksi1sDiv.style.display = "block";
+                saksi2sDiv.style.display = "block";
+            } else {
+                nameBayisDiv.style.display = "none";
+                jenisKelaminBayisDiv.style.display = "none";
+                tempatDilahirkansDiv.style.display = "none";
+                tanggalLahirBayisDiv.style.display = "none";
+                waktuLahirBayisDiv.style.display = "none";
+                jenisKelahiransDiv.style.display = "none";
+                kelahiranKesDiv.style.display = "none";
+                penolongKelahiransDiv.style.display = "none";
+                beratBayisDiv.style.display = "none";
+                panjangBayisDiv.style.display = "none";
+                statusAyahsDiv.style.display = "none";
+                statusIbusDiv.style.display = "none";
+                saksi1sDiv.style.display = "none";
+                saksi2sDiv.style.display = "none";
+            }
+        });
+    });
 </script>
 <script>
     document.addEventListener("DOMContentLoaded", function() {

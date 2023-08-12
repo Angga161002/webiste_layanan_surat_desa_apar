@@ -241,7 +241,7 @@ class PegawaiController extends Controller
     {
         $pengajuans = Pengajuan::join('penduduks', 'pengajuans.nik_penduduk', '=', 'penduduks.nik')
             ->join('jenis_surats', 'pengajuans.id_jenis_surat', '=', 'jenis_surats.id')
-            ->select('pengajuans.*', 'penduduks.name', 'penduduks.email', 'penduduks.pekerjaan', 'penduduks.tanggal_lahir', 'penduduks.tempat_lahir', 'penduduks.jenis_kelamin', 'penduduks.alamat', 'penduduks.agama', 'penduduks.no_hp', 'jenis_surats.name_surat')
+            ->select('pengajuans.*', 'pengajuans.status', 'pengajuans.no_dokumen_perjalanan', 'pengajuans.status_orang_tua', 'pengajuans.name_orang_tua', 'pengajuans.nik_orang_tua', 'pengajuans.name_bayi', 'pengajuans.jenis_kelamin_bayi', 'pengajuans.tempat_dilahirkan', 'pengajuans.tanggal_lahir_bayi', 'pengajuans.waktu_lahir', 'pengajuans.jenis_kelahiran', 'pengajuans.kelahiran_ke', 'pengajuans.penolong_kelahiran', 'pengajuans.berat_bayi', 'pengajuans.panjang_bayi', 'pengajuans.status_ayah', 'pengajuans.name_ayah', 'pengajuans.nik_ayah', 'pengajuans.status_ibu', 'pengajuans.name_ibu', 'pengajuans.nik_ibu', 'pengajuans.name_jenazah', 'pengajuans.tanggal_kematian', 'pengajuans.waktu_kematian', 'pengajuans.sebab_kematian', 'pengajuans.tempat_kematian', 'pengajuans.saksi_keterangan_kematian', 'pengajuans.jenis_usaha', 'pengajuans.keterangan', 'penduduks.name', 'penduduks.email', 'penduduks.pekerjaan', 'penduduks.tanggal_lahir', 'penduduks.tempat_lahir', 'penduduks.jenis_kelamin', 'penduduks.alamat', 'penduduks.agama', 'penduduks.no_hp', 'jenis_surats.name_surat')
             ->where('pengajuans.id', $id)
             ->firstOrFail();
         // dd($pengajuans);

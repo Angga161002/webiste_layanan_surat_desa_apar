@@ -30,6 +30,7 @@ return new class extends Migration
             $table->string('saksi_keterangan_kematian')->nullable();
             $table->string('saksi_1')->nullable();
             $table->string('saksi_2')->nullable();
+            $table->string('status_orang_tua')->nullable();
             $table->string('status_ibu')->nullable();
             $table->string('status_ayah')->nullable();
             $table->string('name_bayi')->nullable();

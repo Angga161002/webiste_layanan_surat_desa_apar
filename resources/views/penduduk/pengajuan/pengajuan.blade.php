@@ -47,9 +47,9 @@
                                         <th>NIK</th>
                                         <th>Name</th>
                                         <th>Jenis Surat</th>
-                                        <th>No Hp</th>
-                                        <th>Status</th>
-                                        <th>Action</th>
+                                        {{-- <th>No Hp</th> --}}
+                                        <th style="text-align: center">Status</th>
+                                        <th style="text-align: center">Action</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -59,8 +59,8 @@
                                             <td>{{ $pengajuans->nik_penduduk }}</td>
                                             <td>{{ $pengajuans->name }}</td>
                                             <td>{{ $pengajuans->name_surat }}</td>
-                                            <td>{{ $pengajuans->no_hp }}</td>
-                                            <td>
+                                            {{-- <td>{{ $pengajuans->no_hp }}</td> --}}
+                                            <td style="text-align: center">
                                                 <span
                                                     style="background-color: {{ $pengajuans->status === '0' ? '#8B0000' : '#1E7E34' }}; border-radius: 12px; padding: 6px; font-size: 15px; color: white; display: inline-block;">
                                                     @if ($pengajuans->status === '0')
@@ -70,8 +70,8 @@
                                                     @endif
                                                 </span>
                                             </td>
-                                            <td><a type="button" class="btn-detail" data-id={{ $pengajuans->id }}
-                                                    title="Detail">
+                                            <td style="text-align: center"><a type="button" class="btn-detail"
+                                                    data-id={{ $pengajuans->id }} title="Detail">
                                                     <img src="{{ asset('img') }}/eye-line-dark.svg">
                                                 </a>&nbsp
                                                 <a href="{{ route('penduduk.editpengajuan', ['pengajuans' => $pengajuans->id]) }}"
@@ -109,9 +109,9 @@
                                         <th>NIK</th>
                                         <th>Name</th>
                                         <th>Jenis Surat</th>
-                                        <th>No Hp</th>
-                                        <th>Status</th>
-                                        <th>Action</th>
+                                        {{-- <th>No Hp</th> --}}
+                                        <th style="text-align: center">Status</th>
+                                        <th style="text-align: center">Action</th>
                                     </tr>
                                 </tfoot>
                             </table>
@@ -128,7 +128,7 @@
     </section>
     <!-- /.content -->
     <div class="modal fade " id="detailModal" tabindex="-1" aria-labelledby="modalDetailLabel" aria-hidden="true">
-        <div class="modal-dialog">
+        <div class="modal-dialog modal-dialog-scrollable">
             <div class="modal-content">
                 <div class="modal-header">
                     <h5 class="modal-title text-center" id="modalDetailLabel">Detail Pengajuan</h5>
@@ -195,6 +195,197 @@
                             <th>Agama</th>
                             <td>:</td>
                             <td id="agama">
+                            <td>
+                        </tr>
+                        <tr>
+                            <th>Status</th>
+                            <td>:</td>
+                            <td id="status">
+                            <td>
+                        </tr>
+                        <tr>
+                            <th>No Dokumen</th>
+                            <td>:</td>
+                            <td id="no_dokumen_perjalanan">
+                            <td>
+                        </tr>
+                        {{-- Surat Keterangan Tidak Mampu, Pengantar, Kelakuan Baik --}}
+                        <tr id="status_orang_tuam" style="display: none">
+                            <th>Status Orang Tua</th>
+                            <td>:</td>
+                            <td id="status_orang_tua">
+                            <td>
+                        </tr>
+                        <tr id="name_orang_tuam" style="display: none">
+                            <th>Nama Orang Tua</th>
+                            <td>:</td>
+                            <td id="name_orang_tua">
+                            <td>
+                        </tr>
+                        <tr id="nik_orang_tuam" style="display: none">
+                            <th>NIK Orang Tua</th>
+                            <td>:</td>
+                            <td id="nik_orang_tua">
+                            <td>
+                        </tr>
+                        {{-- Surat Kelahiran --}}
+                        <tr id="name_bayim" style="display: none">
+                            <th>Nama Bayi</th>
+                            <td>:</td>
+                            <td id="name_bayi">
+                            <td>
+                        </tr>
+                        <tr id="jenis_kelamin_bayim" style="display: none">
+                            <th>Jenis Kelamin Bayi</th>
+                            <td>:</td>
+                            <td id="jenis_kelamin_bayi">
+                            <td>
+                        </tr>
+                        <tr id="tempat_dilahirkanm" style="display: none">
+                            <th>Tempat Dilahirkan</th>
+                            <td>:</td>
+                            <td id="tempat_dilahirkan">
+                            <td>
+                        </tr>
+                        <tr id="tanggal_lahir_bayim" style="display: none">
+                            <th>Tanggal Lahir Bayi</th>
+                            <td>:</td>
+                            <td id="tanggal_lahir_bayi">
+                            <td>
+                        </tr>
+                        <tr id="waktu_lahirm" style="display: none">
+                            <th>Waktu Lahir Bayi</th>
+                            <td>:</td>
+                            <td id="waktu_lahir">
+                            <td>
+                        </tr>
+                        <tr id="jenis_kelahiranm" style="display: none">
+                            <th>Jenis Kelahiran</th>
+                            <td>:</td>
+                            <td id="jenis_kelahiran">
+                            <td>
+                        </tr>
+                        <tr id="kelahiran_kem" style="display: none">
+                            <th>Kelahiran Ke</th>
+                            <td>:</td>
+                            <td id="kelahiran_ke">
+                            <td>
+                        </tr>
+                        <tr id="penolong_kelahiranm" style="display: none">
+                            <th>Penolong Kelahiran</th>
+                            <td>:</td>
+                            <td id="penolong_kelahiran">
+                            <td>
+                        </tr>
+                        <tr id="berat_bayim" style="display: none">
+                            <th>Berat Bayi</th>
+                            <td>:</td>
+                            <td id="berat_bayi">
+                            <td>
+                        </tr>
+                        <tr id="panjang_bayim" style="display: none">
+                            <th>Panjang Bayi</th>
+                            <td>:</td>
+                            <td id="panjang_bayi">
+                            <td>
+                        </tr>
+                        {{-- Surat Kematian --}}
+                        <tr id="name_jenazahm" style="display: none">
+                            <th>Nama Jenazah</th>
+                            <td>:</td>
+                            <td id="name_jenazah">
+                            <td>
+                        </tr>
+                        <tr id="tanggal_kematianm" style="display: none">
+                            <th>Tanggal Kematian</th>
+                            <td>:</td>
+                            <td id="tanggal_kematian">
+                            <td>
+                        </tr>
+                        <tr id="waktu_kematianm" style="display: none">
+                            <th>Waktu Kematian</th>
+                            <td>:</td>
+                            <td id="waktu_kematian">
+                            <td>
+                        </tr>
+                        <tr id="sebab_kematianm" style="display: none">
+                            <th>Sebab Kematian</th>
+                            <td>:</td>
+                            <td id="sebab_kematian">
+                            <td>
+                        </tr>
+                        <tr id="tempat_kematianm" style="display: none">
+                            <th>Tempat Kematian</th>
+                            <td>:</td>
+                            <td id="tempat_kematian">
+                            <td>
+                        </tr>
+                        <tr id="saksi_keterangan_kematianm" style="display: none">
+                            <th>Saksi Keterangan Kematian</th>
+                            <td>:</td>
+                            <td id="saksi_keterangan_kematian">
+                            <td>
+                        </tr>
+                        <tr id="status_ayahm" style="display: none">
+                            <th>Status Ayah</th>
+                            <td>:</td>
+                            <td id="status_ayah">
+                            <td>
+                        </tr>
+                        <tr id="name_ayahm" style="display: none">
+                            <th>Nama Ayah</th>
+                            <td>:</td>
+                            <td id="name_ayah">
+                            <td>
+                        </tr>
+                        <tr id="nik_ayahm" style="display: none">
+                            <th>NIK Ayah</th>
+                            <td>:</td>
+                            <td id="nik_ayah">
+                            <td>
+                        </tr>
+                        <tr id="status_ibum" style="display: none">
+                            <th>Status Ibu</th>
+                            <td>:</td>
+                            <td id="status_ibu">
+                            <td>
+                        </tr>
+                        <tr id="name_ibum" style="display: none">
+                            <th>Name Ibu</th>
+                            <td>:</td>
+                            <td id="name_ibu">
+                            <td>
+                        </tr>
+                        <tr id="nik_ibum" style="display: none">
+                            <th>NIK Ibu</th>
+                            <td>:</td>
+                            <td id="nik_ibu">
+                            <td>
+                        </tr>
+                        <tr id="saksi_1m" style="display: none">
+                            <th>Saksi 1</th>
+                            <td>:</td>
+                            <td id="saksi_1">
+                            <td>
+                        </tr>
+                        <tr id="saksi_2m" style="display: none">
+                            <th>Saksi 2</th>
+                            <td>:</td>
+                            <td id="saksi_2">
+                            <td>
+                        </tr>
+                        {{-- Surat Keterangan Usaha --}}
+                        <tr id="jenis_usaham" style="display: none">
+                            <th>Jenis Usaha</th>
+                            <td>:</td>
+                            <td id="jenis_usaha">
+                            <td>
+                        </tr>
+                        {{-- Surat Keterangan Usaha, Pengantar, Kelakuan Baik, Beda Nama --}}
+                        <tr id="keteranganm" style="display: none">
+                            <th>Keperluan</th>
+                            <td>:</td>
+                            <td id="keterangan">
                             <td>
                         </tr>
                         <tr>
@@ -368,7 +559,292 @@
                     $('#jenis_kelamin').text(jenisKelamin);
                     $('#alamat').text(response.data.alamat);
                     $('#agama').text(response.data.agama);
+                    var statusText = response.data.status === "1" ? "Disetujui" : response
+                        .data.status === "0" ? "Belum Disetujui" : "-";
+                    $('#status').text(statusText);
+                    $('#no_dokumen_perjalanan').text(response.data.no_dokumen_perjalanan ||
+                        "-");
+
+                    // Surat Keterangan Tidak Mampu, Pengantar, Kelakuan Baik
+                    $('#status_orang_tua').text(response.data.status_orang_tua || "-");
+                    $('#name_orang_tua').text(response.data.name_orang_tua || "-");
+                    $('#nik_orang_tua').text(response.data.nik_orang_tua || "-");
+
+                    //Surat Kelahiran
+                    $('#name_bayi').text(response.data.name_bayi || "-");
+                    var jenisKelaminBayi = response.data.jenis_kelamin_bayi === 'L' ?
+                        'Laki-laki' : 'Perempuan';
+                    $('#jenis_kelamin_bayi').text(jenisKelaminBayi);
+                    $('#tempat_dilahirkan').text(response.data.tempat_dilahirkan || "-");
+                    $('#tanggal_lahir_bayi').text(response.data.tanggal_lahir_bayi ?
+                        new Date(response.data.tanggal_lahir_bayi).toLocaleDateString(
+                            'id-ID', {
+                                day: 'numeric',
+                                month: 'long',
+                                year: 'numeric'
+                            }) : "-");
+                    $('#waktu_lahir').text(response.data.waktu_lahir || "-");
+                    $('#jenis_kelahiran').text(response.data.jenis_kelahiran || "-");
+                    $('#kelahiran_ke').text(response.data.kelahiran_ke || "-");
+                    $('#penolong_kelahiran').text(response.data.penolong_kelahiran || "-");
+                    $('#berat_bayi').text(response.data.berat_bayi || "-");
+                    $('#panjang_bayi').text(response.data.panjang_bayi || "-");
+
+                    //Surat Kematian
+                    $('#name_jenazah').text(response.data.name_jenazah || "-");
+                    $('#tanggal_kematian').text(response.data.tanggal_kematian ? new Date(
+                        response.data.tanggal_kematian).toLocaleDateString(
+                        'id-ID', {
+                            day: 'numeric',
+                            month: 'long',
+                            year: 'numeric'
+                        }) : "-");
+                    $('#waktu_kematian').text(response.data.waktu_kematian || "-");
+                    $('#sebab_kematian').text(response.data.sebab_kematian || "-");
+                    $('#tempat_kematian').text(response.data.tempat_kematian || "-");
+                    $('#status_ayah').text(response.data.status_ayah || "-");
+                    $('#name_ayah').text(response.data.name_ayah || "-");
+                    $('#nik_ayah').text(response.data.nik_ayah || "-");
+                    $('#status_ibu').text(response.data.status_ibu || "-");
+                    $('#name_ibu').text(response.data.name_ibu || "-");
+                    $('#nik_ibu').text(response.data.nik_ibu || "-");
+                    $('#saksi_1').text(response.data.saksi_1 || "-");
+                    $('#saksi_2').text(response.data.saksi_2 || "-");
+                    $('#saksi_keterangan_kematian').text(response.data
+                        .saksi_keterangan_kematian || "-");
+
+                    //Surat Keterangan Usaha
+                    $('#jenis_usaha').text(response.data.jenis_usaha || "-");
+
+                    //Surat Keterangan Usaha, Pengantar, Kelakuan Baik, Beda Nama
+                    $('#keterangan').text(response.data.keterangan || "-");
                     $('#no_hp').text(response.data.no_hp);
+
+                    // Surat Keterangan Tidak Mampu, Ijin Orang Tua / Wali, Pernyataan Belum / Tidak Bekerja
+                    var statusOrangTuasDiv = document.getElementById("status_orang_tuam");
+                    var nameOrangTuasDiv = document.getElementById("name_orang_tuam");
+                    var nikOrangTuasDiv = document.getElementById("nik_orang_tuam");
+                    //Surat Kelahiran
+                    var nameBayisDiv = document.getElementById("name_bayim");
+                    var jenisKelaminBayisDiv = document.getElementById(
+                        "jenis_kelamin_bayim");
+                    var tempatDilahirkansDiv = document.getElementById(
+                        "tempat_dilahirkanm");
+                    var tanggalLahirBayisDiv = document.getElementById(
+                        "tanggal_lahir_bayim");
+                    var waktuLahirBayisDiv = document.getElementById("waktu_lahirm");
+                    var jenisKelahiransDiv = document.getElementById("jenis_kelahiranm");
+                    var kelahiranKesDiv = document.getElementById("kelahiran_kem");
+                    var penolongKelahiransDiv = document.getElementById(
+                        "penolong_kelahiranm");
+                    var beratBayisDiv = document.getElementById("berat_bayim");
+                    var panjangBayisDiv = document.getElementById("panjang_bayim");
+                    // Surat Kematian
+                    var nameJenazahsDiv = document.getElementById("name_jenazahm");
+                    var tanggalKematiansDiv = document.getElementById("tanggal_kematianm");
+                    var waktuKematiansDiv = document.getElementById("waktu_kematianm");
+                    var sebabKematiansDiv = document.getElementById("sebab_kematianm");
+                    var tempatKematiansDiv = document.getElementById("tempat_kematianm");
+                    var saksiKetranganKematiansDiv = document.getElementById(
+                        "saksi_keterangan_kematianm");
+                    var statusAyahsDiv = document.getElementById("status_ayahm");
+                    var nameAyahsDiv = document.getElementById("name_ayahm");
+                    var nikAyahsDiv = document.getElementById("nik_ayahm");
+                    var statusIbusDiv = document.getElementById("status_ibum");
+                    var nameIbusDiv = document.getElementById("name_ibum");
+                    var nikIbusDiv = document.getElementById("nik_ibum");
+                    var saksi1sDiv = document.getElementById("saksi_1m");
+                    var saksi2sDiv = document.getElementById("saksi_2m");
+                    // Surat Keterangan Usaha
+                    var jenisUsahasDiv = document.getElementById("jenis_usaham");
+                    // Surat Keterangan Pengantar, Usaha, Kelakuan Baik, Beda Nama
+                    var keterangansDiv = document.getElementById("keteranganm");
+
+                    if (response.data.id_jenis_surat === 1 || response.data
+                        .id_jenis_surat === 7 || response.data.id_jenis_surat === 9) {
+                        statusOrangTuasDiv.style.display = "";
+                        nameOrangTuasDiv.style.display = "";
+                        nikOrangTuasDiv.style.display = "";
+                        keterangansDiv.style.display = "";
+                        nameBayisDiv.style.display = "none";
+                        jenisKelaminBayisDiv.style.display = "none";
+                        tempatDilahirkansDiv.style.display = "none";
+                        tanggalLahirBayisDiv.style.display = "none";
+                        waktuLahirBayisDiv.style.display = "none";
+                        jenisKelahiransDiv.style.display = "none";
+                        kelahiranKesDiv.style.display = "none";
+                        penolongKelahiransDiv.style.display = "none";
+                        beratBayisDiv.style.display = "none";
+                        panjangBayisDiv.style.display = "none";
+                        statusAyahsDiv.style.display = "none";
+                        statusIbusDiv.style.display = "none";
+                        nameAyahsDiv.style.display = "none";
+                        nikAyahsDiv.style.display = "none";
+                        nameIbusDiv.style.display = "none";
+                        nikIbusDiv.style.display = "none";
+                        saksi1sDiv.style.display = "none";
+                        saksi2sDiv.style.display = "none";
+                        nameJenazahsDiv.style.display = "none";
+                        tanggalKematiansDiv.style.display = "none";
+                        waktuKematiansDiv.style.display = "none";
+                        sebabKematiansDiv.style.display = "none";
+                        tempatKematiansDiv.style.display = "none";
+                        saksiKetranganKematiansDiv.style.display = "none";
+                        saksi1sDiv.style.display = "none";
+                        saksi2sDiv.style.display = "none";
+                        jenisUsahasDiv.style.display = "none";
+                    } else if (response.data.id_jenis_surat === 2) {
+                        nameOrangTuasDiv.style.display = "none";
+                        nikOrangTuasDiv.style.display = "none";
+                        nameBayisDiv.style.display = "";
+                        jenisKelaminBayisDiv.style.display = "";
+                        tempatDilahirkansDiv.style.display = "";
+                        tanggalLahirBayisDiv.style.display = "";
+                        waktuLahirBayisDiv.style.display = "";
+                        jenisKelahiransDiv.style.display = "";
+                        kelahiranKesDiv.style.display = "";
+                        penolongKelahiransDiv.style.display = "";
+                        beratBayisDiv.style.display = "";
+                        panjangBayisDiv.style.display = "";
+                        statusAyahsDiv.style.display = "";
+                        statusIbusDiv.style.display = "";
+                        nameAyahsDiv.style.display = "";
+                        nikAyahsDiv.style.display = "";
+                        nameIbusDiv.style.display = "";
+                        nikIbusDiv.style.display = "";
+                        statusOrangTuasDiv.style.display = "none";
+                        keterangansDiv.style.display = "none";
+                        nameJenazahsDiv.style.display = "none";
+                        tanggalKematiansDiv.style.display = "none";
+                        waktuKematiansDiv.style.display = "none";
+                        sebabKematiansDiv.style.display = "none";
+                        tempatKematiansDiv.style.display = "none";
+                        saksiKetranganKematiansDiv.style.display = "none";
+                        saksi1sDiv.style.display = "none";
+                        saksi2sDiv.style.display = "none";
+                        jenisUsahasDiv.style.display = "none";
+                    } else if (response.data.id_jenis_surat === 3) {
+                        nameOrangTuasDiv.style.display = "none";
+                        nikOrangTuasDiv.style.display = "none";
+                        nameJenazahsDiv.style.display = "";
+                        tanggalKematiansDiv.style.display = "";
+                        waktuKematiansDiv.style.display = "";
+                        sebabKematiansDiv.style.display = "";
+                        tempatKematiansDiv.style.display = "";
+                        saksiKetranganKematiansDiv.style.display = "";
+                        statusAyahsDiv.style.display = "";
+                        statusIbusDiv.style.display = "";
+                        nameAyahsDiv.style.display = "";
+                        nikAyahsDiv.style.display = "";
+                        nameIbusDiv.style.display = "";
+                        nikIbusDiv.style.display = "";
+                        saksi1sDiv.style.display = "";
+                        saksi2sDiv.style.display = "";
+                        nameBayisDiv.style.display = "none";
+                        jenisKelaminBayisDiv.style.display = "none";
+                        tempatDilahirkansDiv.style.display = "none";
+                        tanggalLahirBayisDiv.style.display = "none";
+                        waktuLahirBayisDiv.style.display = "none";
+                        jenisKelahiransDiv.style.display = "none";
+                        kelahiranKesDiv.style.display = "none";
+                        penolongKelahiransDiv.style.display = "none";
+                        beratBayisDiv.style.display = "none";
+                        panjangBayisDiv.style.display = "none";
+                        statusOrangTuasDiv.style.display = "none";
+                        keterangansDiv.style.display = "none";
+                        jenisUsahasDiv.style.display = "none";
+                    } else if (response.data.id_jenis_surat === 4) {
+                        nameJenazahsDiv.style.display = "none";
+                        tanggalKematiansDiv.style.display = "none";
+                        waktuKematiansDiv.style.display = "none";
+                        sebabKematiansDiv.style.display = "none";
+                        tempatKematiansDiv.style.display = "none";
+                        saksiKetranganKematiansDiv.style.display = "none";
+                        statusAyahsDiv.style.display = "none";
+                        statusIbusDiv.style.display = "none";
+                        saksi1sDiv.style.display = "none";
+                        saksi2sDiv.style.display = "none";
+                        nameBayisDiv.style.display = "none";
+                        jenisKelaminBayisDiv.style.display = "none";
+                        tempatDilahirkansDiv.style.display = "none";
+                        tanggalLahirBayisDiv.style.display = "none";
+                        waktuLahirBayisDiv.style.display = "none";
+                        jenisKelahiransDiv.style.display = "none";
+                        kelahiranKesDiv.style.display = "none";
+                        penolongKelahiransDiv.style.display = "none";
+                        beratBayisDiv.style.display = "none";
+                        panjangBayisDiv.style.display = "none";
+                        statusOrangTuasDiv.style.display = "none";
+                        keterangansDiv.style.display = "none";
+                        jenisUsahasDiv.style.display = "";
+                        nameOrangTuasDiv.style.display = "none";
+                        nikOrangTuasDiv.style.display = "none";
+                        nameAyahsDiv.style.display = "none";
+                        nikAyahsDiv.style.display = "none";
+                        nameIbusDiv.style.display = "none";
+                        nikIbusDiv.style.display = "none";
+                    } else if (response.data.id_jenis_surat === 5 || response.data
+                        .id_jenis_surat === 6 || response.data.id_jenis_surat === 8) {
+                        nameJenazahsDiv.style.display = "none";
+                        tanggalKematiansDiv.style.display = "none";
+                        waktuKematiansDiv.style.display = "none";
+                        sebabKematiansDiv.style.display = "none";
+                        tempatKematiansDiv.style.display = "none";
+                        saksiKetranganKematiansDiv.style.display = "none";
+                        statusAyahsDiv.style.display = "none";
+                        statusIbusDiv.style.display = "none";
+                        saksi1sDiv.style.display = "none";
+                        saksi2sDiv.style.display = "none";
+                        nameBayisDiv.style.display = "none";
+                        jenisKelaminBayisDiv.style.display = "none";
+                        tempatDilahirkansDiv.style.display = "none";
+                        tanggalLahirBayisDiv.style.display = "none";
+                        waktuLahirBayisDiv.style.display = "none";
+                        jenisKelahiransDiv.style.display = "none";
+                        kelahiranKesDiv.style.display = "none";
+                        penolongKelahiransDiv.style.display = "none";
+                        beratBayisDiv.style.display = "none";
+                        panjangBayisDiv.style.display = "none";
+                        statusOrangTuasDiv.style.display = "none";
+                        keterangansDiv.style.display = "";
+                        jenisUsahasDiv.style.display = "none";
+                        nameOrangTuasDiv.style.display = "none";
+                        nikOrangTuasDiv.style.display = "none";
+                        nameAyahsDiv.style.display = "none";
+                        nikAyahsDiv.style.display = "none";
+                        nameIbusDiv.style.display = "none";
+                        nikIbusDiv.style.display = "none";
+                    } else {
+                        nameJenazahsDiv.style.display = "none";
+                        tanggalKematiansDiv.style.display = "none";
+                        waktuKematiansDiv.style.display = "none";
+                        sebabKematiansDiv.style.display = "none";
+                        tempatKematiansDiv.style.display = "none";
+                        saksiKetranganKematiansDiv.style.display = "none";
+                        statusAyahsDiv.style.display = "";
+                        statusIbusDiv.style.display = "";
+                        saksi1sDiv.style.display = "none";
+                        saksi2sDiv.style.display = "none";
+                        nameBayisDiv.style.display = "none";
+                        jenisKelaminBayisDiv.style.display = "none";
+                        tempatDilahirkansDiv.style.display = "none";
+                        tanggalLahirBayisDiv.style.display = "none";
+                        waktuLahirBayisDiv.style.display = "none";
+                        jenisKelahiransDiv.style.display = "none";
+                        kelahiranKesDiv.style.display = "none";
+                        penolongKelahiransDiv.style.display = "none";
+                        beratBayisDiv.style.display = "none";
+                        panjangBayisDiv.style.display = "none";
+                        statusOrangTuasDiv.style.display = "none";
+                        keterangansDiv.style.display = "none";
+                        jenisUsahasDiv.style.display = "none";
+                        nameOrangTuasDiv.style.display = "none";
+                        nikOrangTuasDiv.style.display = "none";
+                        nameAyahsDiv.style.display = "none";
+                        nikAyahsDiv.style.display = "none";
+                        nameIbusDiv.style.display = "none";
+                        nikIbusDiv.style.display = "none";
+                    }
                 },
                 error: function(xhr, status, error) {
                     console.log(xhr.responseText);

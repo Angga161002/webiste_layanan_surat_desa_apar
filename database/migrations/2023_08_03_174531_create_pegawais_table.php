@@ -13,9 +13,9 @@ return new class extends Migration
     {
         Schema::create('pegawais', function (Blueprint $table) {
             $table->id();
-            $table->string('username');
-            $table->string('email');
-            $table->string('no_hp');
+            $table->string('username')->unique();
+            $table->string('email')->unique();
+            $table->string('no_hp')->unique();
             $table->string('password');
             $table->timestamps();
             });
