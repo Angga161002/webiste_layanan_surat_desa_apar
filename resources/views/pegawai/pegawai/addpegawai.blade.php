@@ -1,6 +1,21 @@
 @section('title', 'Dashboard Pegawai')
 
 @include('layouts.header')
+<style>
+    .password-toggle {
+        position: relative;
+    }
+
+    .password-toggle__icon {
+        position: absolute;
+        right: 10px;
+        top: 50%;
+        transform: translateY(-50%);
+        cursor: pointer;
+        user-select: none;
+        z-index: 1;
+    }
+</style>
 
 @include('layouts.navbar')
 
@@ -49,8 +64,8 @@
                                 </div>
                                 <div class="form-group">
                                     <label for="email">Email</label>
-                                    <input type="email" name="email" class="form-control"
-                                        id="email" placeholder="Enter Email">
+                                    <input type="email" name="email" class="form-control" id="email"
+                                        placeholder="Enter Email">
                                 </div>
                                 <div class="form-group">
                                     <label for="nohp">No Hp</label>
@@ -58,9 +73,11 @@
                                         placeholder="Enter No Hp">
                                 </div>
                                 <div class="form-group">
-                                    <label for="password">Password</label>
-                                    <input type="password" name="password" class="form-control"
-                                        id="password" placeholder="Enter Password">
+                                    <label class="label-title">Password</label>
+                                    <input type="password" class="form-control" name="password" id="password"
+                                        onkeyup='check();' placeholder="Masukan Kata Sandi">
+                                    <span class="password-toggle__icon" onclick="togglePasswordVisibility(this)"><i
+                                            class="fa fa-eye" style="margin-top: 264px; margin-right: 20px"></i></span>
                                 </div>
                             </div>
                             <!-- /.card-body -->
@@ -87,3 +104,20 @@
 </div>
 <!-- /.content-wrapper -->
 @include('layouts.footer')
+{{-- Extra Script --}}
+<script>
+    function togglePasswordVisibility(icon) {
+        var input = icon.previousElementSibling;
+        var iconElement = icon.querySelector("i");
+        if (input.type === "password") {
+            input.type = "text";
+            iconElement.classList.remove("fa-eye");
+            iconElement.classList.add("fa-eye-slash");
+        } else {
+            input.type = "password";
+            iconElement.classList.remove("fa-eye-slash");
+            iconElement.classList.add("fa-eye");
+        }
+    }
+</script>
+{{-- End Extra Script --}}

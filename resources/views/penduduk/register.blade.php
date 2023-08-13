@@ -2,6 +2,21 @@
 @section('extrahead')
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css">
     <link rel="stylesheet" href="{{ asset('assets/css/views/login.css') }}">
+    <style>
+        .password-toggle {
+            position: relative;
+        }
+
+        .password-toggle__icon {
+            position: absolute;
+            right: 10px;
+            top: 50%;
+            transform: translateY(-50%);
+            cursor: pointer;
+            user-select: none;
+            z-index: 1;
+        }
+    </style>
 @endsection
 @section('content')
     <div id="preloader"></div>
@@ -14,7 +29,8 @@
                         <div class="logo-sm d-flex section-text-login" style="margin-bottom: 16px;">
                             <img src="{{ asset('kota-pariaman.png') }}" alt="Kota Pariaman" style="width: 40px">
                         </div>
-                        <form class="js-validation-signin signIn" action="{{ route('penduduk.authenticateregister') }}" method="post">
+                        <form class="js-validation-signin signIn" action="{{ route('penduduk.authenticateregister') }}"
+                            method="post">
                             <div class="section-text-login">
                                 <h4>Buat akun Baru Anda</h4>
                                 <p>Selamat Datang kembali! Silakan Register.</p>
@@ -47,12 +63,22 @@
                                 <div class="form-group col-md-12 mb-20">
                                     <div class="form-custom-border">
                                         <label class="label-title">Password</label>
-
-                                        <input type="password" name="password" id="password" value=""
-                                            class="form-control" placeholder="Masukan Kata Sandi">
+                                        <input type="password" class="form-control" name="password" id="password"
+                                            onkeyup='check();' placeholder="Masukan Kata Sandi">
+                                        <span class="password-toggle__icon" onclick="togglePasswordVisibility(this)"><i
+                                                class="fa fa-eye" style="margin-top: 28px; margin-right: 20px"></i></span>
                                     </div>
                                 </div>
                             </div>
+
+                            <div class="form-group row">
+                                <div class="custom-control custom-checkbox" style="margin-left: 11px">
+                                    <span class="label-remember" for="Register" style="margin-left: -18px;">Sudah Punya
+                                        Akun? <a href="{{ route('penduduk.login') }}">Login
+                                            Disini!!</a></span><br><br>
+                                </div>
+                            </div>
+
                             <div class="form-group mt-10">
                                 <button type="submit" class="btn btn-primary-dark w-100">
                                     Register
@@ -185,16 +211,6 @@
             $('#time_zone').val(tz);
         });
 
-        // const password = document.querySelector('#password');
-
-        // $('#togglePassword').on('click', function(e) {
-        //     // toggle the type attribute
-        //     const type = password.getAttribute('type') === 'password' ? 'text' : 'password';
-        //     password.setAttribute('type', type);
-        //     // toggle the eye slash icon
-        //     this.classList.toggle('fa-eye-slash');
-        // });
-
         $("#nik").on("input", function() {
             if ($("#nik").val() == "") {
                 $("#nik").css("border", "1px solid #ff0000");
@@ -210,5 +226,20 @@
                 $("#password").css("border", "");
             }
         });
+    </script>
+    <script>
+        function togglePasswordVisibility(icon) {
+            var input = icon.previousElementSibling;
+            var iconElement = icon.querySelector("i");
+            if (input.type === "password") {
+                input.type = "text";
+                iconElement.classList.remove("fa-eye");
+                iconElement.classList.add("fa-eye-slash");
+            } else {
+                input.type = "password";
+                iconElement.classList.remove("fa-eye-slash");
+                iconElement.classList.add("fa-eye");
+            }
+        }
     </script>
 @endsection

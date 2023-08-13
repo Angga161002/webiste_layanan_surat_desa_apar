@@ -67,6 +67,11 @@ class PendudukController extends Controller
         }
     }
 
+    public function forgotpassword()
+    {
+        return view('penduduk.forgotpassword');
+    }
+
     public function logout(request $request)
     {
         session()->forget('nik');
@@ -283,6 +288,111 @@ class PendudukController extends Controller
         // dd($pegawais->all());
         return view('penduduk.jenissurat.jenissurat', ['jenissurats' => $jenissurats], ['penduduk' => $penduduk]);
     }
+
+    public function suratketerangantidakmampu($pengajuan_id)
+    {
+        $pengajuans = Pengajuan::join('penduduks', 'pengajuans.nik_penduduk', '=', 'penduduks.nik')
+            ->join('jenis_surats', 'pengajuans.id_jenis_surat', '=', 'jenis_surats.id')
+            ->select('pengajuans.*', 'pengajuans.status', 'pengajuans.no_dokumen_perjalanan', 'pengajuans.status_orang_tua', 'pengajuans.name_orang_tua', 'pengajuans.nik_orang_tua', 'pengajuans.name_bayi', 'pengajuans.jenis_kelamin_bayi', 'pengajuans.tempat_dilahirkan', 'pengajuans.tanggal_lahir_bayi', 'pengajuans.waktu_lahir', 'pengajuans.jenis_kelahiran', 'pengajuans.kelahiran_ke', 'pengajuans.penolong_kelahiran', 'pengajuans.berat_bayi', 'pengajuans.panjang_bayi', 'pengajuans.status_ayah', 'pengajuans.name_ayah', 'pengajuans.nik_ayah', 'pengajuans.status_ibu', 'pengajuans.name_ibu', 'pengajuans.nik_ibu', 'pengajuans.name_jenazah', 'pengajuans.tanggal_kematian', 'pengajuans.waktu_kematian', 'pengajuans.sebab_kematian', 'pengajuans.tempat_kematian', 'pengajuans.saksi_keterangan_kematian', 'pengajuans.jenis_usaha', 'pengajuans.keterangan', 'penduduks.name', 'penduduks.email', 'penduduks.pekerjaan', 'penduduks.tanggal_lahir', 'penduduks.tempat_lahir', 'penduduks.jenis_kelamin', 'penduduks.alamat', 'penduduks.agama', 'penduduks.no_hp', 'jenis_surats.name_surat')
+            ->where('pengajuans.id', $pengajuan_id)
+            ->firstOrFail();
+        // dd($pengajuans);
+        return view('surat.suratketerangantidakmampu', ['pengajuans' => $pengajuans]);
+    }
+
+    public function suratkelahiran($pengajuan_id)
+    {
+        $pengajuans = Pengajuan::join('penduduks', 'pengajuans.nik_penduduk', '=', 'penduduks.nik')
+            ->join('jenis_surats', 'pengajuans.id_jenis_surat', '=', 'jenis_surats.id')
+            ->select('pengajuans.*', 'pengajuans.status', 'pengajuans.no_dokumen_perjalanan', 'pengajuans.status_orang_tua', 'pengajuans.name_orang_tua', 'pengajuans.nik_orang_tua', 'pengajuans.name_bayi', 'pengajuans.jenis_kelamin_bayi', 'pengajuans.tempat_dilahirkan', 'pengajuans.tanggal_lahir_bayi', 'pengajuans.waktu_lahir', 'pengajuans.jenis_kelahiran', 'pengajuans.kelahiran_ke', 'pengajuans.penolong_kelahiran', 'pengajuans.berat_bayi', 'pengajuans.panjang_bayi', 'pengajuans.status_ayah', 'pengajuans.name_ayah', 'pengajuans.nik_ayah', 'pengajuans.status_ibu', 'pengajuans.name_ibu', 'pengajuans.nik_ibu', 'pengajuans.name_jenazah', 'pengajuans.tanggal_kematian', 'pengajuans.waktu_kematian', 'pengajuans.sebab_kematian', 'pengajuans.tempat_kematian', 'pengajuans.saksi_keterangan_kematian', 'pengajuans.jenis_usaha', 'pengajuans.keterangan', 'penduduks.name', 'penduduks.email', 'penduduks.pekerjaan', 'penduduks.tanggal_lahir', 'penduduks.tempat_lahir', 'penduduks.jenis_kelamin', 'penduduks.alamat', 'penduduks.agama', 'penduduks.no_hp', 'jenis_surats.name_surat')
+            ->where('pengajuans.id', $pengajuan_id)
+            ->firstOrFail();
+        // dd($pengajuans);
+        return view('surat.suratkelahiran', ['pengajuans' => $pengajuans]);
+    }
+
+    public function suratkematian($pengajuan_id)
+    {
+        $pengajuans = Pengajuan::join('penduduks', 'pengajuans.nik_penduduk', '=', 'penduduks.nik')
+            ->join('jenis_surats', 'pengajuans.id_jenis_surat', '=', 'jenis_surats.id')
+            ->select('pengajuans.*', 'pengajuans.status', 'pengajuans.no_dokumen_perjalanan', 'pengajuans.status_orang_tua', 'pengajuans.name_orang_tua', 'pengajuans.nik_orang_tua', 'pengajuans.name_bayi', 'pengajuans.jenis_kelamin_bayi', 'pengajuans.tempat_dilahirkan', 'pengajuans.tanggal_lahir_bayi', 'pengajuans.waktu_lahir', 'pengajuans.jenis_kelahiran', 'pengajuans.kelahiran_ke', 'pengajuans.penolong_kelahiran', 'pengajuans.berat_bayi', 'pengajuans.panjang_bayi', 'pengajuans.status_ayah', 'pengajuans.name_ayah', 'pengajuans.nik_ayah', 'pengajuans.status_ibu', 'pengajuans.name_ibu', 'pengajuans.nik_ibu', 'pengajuans.name_jenazah', 'pengajuans.tanggal_kematian', 'pengajuans.waktu_kematian', 'pengajuans.sebab_kematian', 'pengajuans.tempat_kematian', 'pengajuans.saksi_keterangan_kematian', 'pengajuans.jenis_usaha', 'pengajuans.keterangan', 'penduduks.name', 'penduduks.email', 'penduduks.pekerjaan', 'penduduks.tanggal_lahir', 'penduduks.tempat_lahir', 'penduduks.jenis_kelamin', 'penduduks.alamat', 'penduduks.agama', 'penduduks.no_hp', 'jenis_surats.name_surat')
+            ->where('pengajuans.id', $pengajuan_id)
+            ->firstOrFail();
+        // dd($pengajuans);
+        return view('surat.suratkematian', ['pengajuans' => $pengajuans]);
+    }
+
+    public function suratketeranganusaha($pengajuan_id)
+    {
+        $pengajuans = Pengajuan::join('penduduks', 'pengajuans.nik_penduduk', '=', 'penduduks.nik')
+            ->join('jenis_surats', 'pengajuans.id_jenis_surat', '=', 'jenis_surats.id')
+            ->select('pengajuans.*', 'pengajuans.status', 'pengajuans.no_dokumen_perjalanan', 'pengajuans.status_orang_tua', 'pengajuans.name_orang_tua', 'pengajuans.nik_orang_tua', 'pengajuans.name_bayi', 'pengajuans.jenis_kelamin_bayi', 'pengajuans.tempat_dilahirkan', 'pengajuans.tanggal_lahir_bayi', 'pengajuans.waktu_lahir', 'pengajuans.jenis_kelahiran', 'pengajuans.kelahiran_ke', 'pengajuans.penolong_kelahiran', 'pengajuans.berat_bayi', 'pengajuans.panjang_bayi', 'pengajuans.status_ayah', 'pengajuans.name_ayah', 'pengajuans.nik_ayah', 'pengajuans.status_ibu', 'pengajuans.name_ibu', 'pengajuans.nik_ibu', 'pengajuans.name_jenazah', 'pengajuans.tanggal_kematian', 'pengajuans.waktu_kematian', 'pengajuans.sebab_kematian', 'pengajuans.tempat_kematian', 'pengajuans.saksi_keterangan_kematian', 'pengajuans.jenis_usaha', 'pengajuans.keterangan', 'penduduks.name', 'penduduks.email', 'penduduks.pekerjaan', 'penduduks.tanggal_lahir', 'penduduks.tempat_lahir', 'penduduks.jenis_kelamin', 'penduduks.alamat', 'penduduks.agama', 'penduduks.no_hp', 'jenis_surats.name_surat')
+            ->where('pengajuans.id', $pengajuan_id)
+            ->firstOrFail();
+        // dd($pengajuans);
+        return view('surat.suratketeranganusaha', ['pengajuans' => $pengajuans]);
+    }
+
+    public function suratketeranganpengantar($pengajuan_id)
+    {
+        $pengajuans = Pengajuan::join('penduduks', 'pengajuans.nik_penduduk', '=', 'penduduks.nik')
+            ->join('jenis_surats', 'pengajuans.id_jenis_surat', '=', 'jenis_surats.id')
+            ->select('pengajuans.*', 'pengajuans.status', 'pengajuans.no_dokumen_perjalanan', 'pengajuans.status_orang_tua', 'pengajuans.name_orang_tua', 'pengajuans.nik_orang_tua', 'pengajuans.name_bayi', 'pengajuans.jenis_kelamin_bayi', 'pengajuans.tempat_dilahirkan', 'pengajuans.tanggal_lahir_bayi', 'pengajuans.waktu_lahir', 'pengajuans.jenis_kelahiran', 'pengajuans.kelahiran_ke', 'pengajuans.penolong_kelahiran', 'pengajuans.berat_bayi', 'pengajuans.panjang_bayi', 'pengajuans.status_ayah', 'pengajuans.name_ayah', 'pengajuans.nik_ayah', 'pengajuans.status_ibu', 'pengajuans.name_ibu', 'pengajuans.nik_ibu', 'pengajuans.name_jenazah', 'pengajuans.tanggal_kematian', 'pengajuans.waktu_kematian', 'pengajuans.sebab_kematian', 'pengajuans.tempat_kematian', 'pengajuans.saksi_keterangan_kematian', 'pengajuans.jenis_usaha', 'pengajuans.keterangan', 'penduduks.name', 'penduduks.email', 'penduduks.pekerjaan', 'penduduks.tanggal_lahir', 'penduduks.tempat_lahir', 'penduduks.jenis_kelamin', 'penduduks.alamat', 'penduduks.agama', 'penduduks.no_hp', 'jenis_surats.name_surat')
+            ->where('pengajuans.id', $pengajuan_id)
+            ->firstOrFail();
+        // dd($pengajuans);
+        return view('surat.suratketeranganpengantar', ['pengajuans' => $pengajuans]);
+    }
+
+    public function suratketerangankelakuanbaik($pengajuan_id)
+    {
+        $pengajuans = Pengajuan::join('penduduks', 'pengajuans.nik_penduduk', '=', 'penduduks.nik')
+            ->join('jenis_surats', 'pengajuans.id_jenis_surat', '=', 'jenis_surats.id')
+            ->select('pengajuans.*', 'pengajuans.status', 'pengajuans.no_dokumen_perjalanan', 'pengajuans.status_orang_tua', 'pengajuans.name_orang_tua', 'pengajuans.nik_orang_tua', 'pengajuans.name_bayi', 'pengajuans.jenis_kelamin_bayi', 'pengajuans.tempat_dilahirkan', 'pengajuans.tanggal_lahir_bayi', 'pengajuans.waktu_lahir', 'pengajuans.jenis_kelahiran', 'pengajuans.kelahiran_ke', 'pengajuans.penolong_kelahiran', 'pengajuans.berat_bayi', 'pengajuans.panjang_bayi', 'pengajuans.status_ayah', 'pengajuans.name_ayah', 'pengajuans.nik_ayah', 'pengajuans.status_ibu', 'pengajuans.name_ibu', 'pengajuans.nik_ibu', 'pengajuans.name_jenazah', 'pengajuans.tanggal_kematian', 'pengajuans.waktu_kematian', 'pengajuans.sebab_kematian', 'pengajuans.tempat_kematian', 'pengajuans.saksi_keterangan_kematian', 'pengajuans.jenis_usaha', 'pengajuans.keterangan', 'penduduks.name', 'penduduks.email', 'penduduks.pekerjaan', 'penduduks.tanggal_lahir', 'penduduks.tempat_lahir', 'penduduks.jenis_kelamin', 'penduduks.alamat', 'penduduks.agama', 'penduduks.no_hp', 'jenis_surats.name_surat')
+            ->where('pengajuans.id', $pengajuan_id)
+            ->firstOrFail();
+        // dd($pengajuans);
+        return view('surat.suratketerangankelakuanbaik', ['pengajuans' => $pengajuans]);
+    }
+
+    public function suratketeranganijinorangtuawali($pengajuan_id)
+    {
+        $pengajuans = Pengajuan::join('penduduks', 'pengajuans.nik_penduduk', '=', 'penduduks.nik')
+            ->join('jenis_surats', 'pengajuans.id_jenis_surat', '=', 'jenis_surats.id')
+            ->select('pengajuans.*', 'pengajuans.status', 'pengajuans.no_dokumen_perjalanan', 'pengajuans.status_orang_tua', 'pengajuans.name_orang_tua', 'pengajuans.nik_orang_tua', 'pengajuans.name_bayi', 'pengajuans.jenis_kelamin_bayi', 'pengajuans.tempat_dilahirkan', 'pengajuans.tanggal_lahir_bayi', 'pengajuans.waktu_lahir', 'pengajuans.jenis_kelahiran', 'pengajuans.kelahiran_ke', 'pengajuans.penolong_kelahiran', 'pengajuans.berat_bayi', 'pengajuans.panjang_bayi', 'pengajuans.status_ayah', 'pengajuans.name_ayah', 'pengajuans.nik_ayah', 'pengajuans.status_ibu', 'pengajuans.name_ibu', 'pengajuans.nik_ibu', 'pengajuans.name_jenazah', 'pengajuans.tanggal_kematian', 'pengajuans.waktu_kematian', 'pengajuans.sebab_kematian', 'pengajuans.tempat_kematian', 'pengajuans.saksi_keterangan_kematian', 'pengajuans.jenis_usaha', 'pengajuans.keterangan', 'penduduks.name', 'penduduks.email', 'penduduks.pekerjaan', 'penduduks.tanggal_lahir', 'penduduks.tempat_lahir', 'penduduks.jenis_kelamin', 'penduduks.alamat', 'penduduks.agama', 'penduduks.no_hp', 'jenis_surats.name_surat')
+            ->where('pengajuans.id', $pengajuan_id)
+            ->firstOrFail();
+        // dd($pengajuans);
+        return view('surat.suratketeranganijinorangtuawali', ['pengajuans' => $pengajuans]);
+    }
+
+    public function suratketeranganbedanama($pengajuan_id)
+    {
+        $pengajuans = Pengajuan::join('penduduks', 'pengajuans.nik_penduduk', '=', 'penduduks.nik')
+            ->join('jenis_surats', 'pengajuans.id_jenis_surat', '=', 'jenis_surats.id')
+            ->select('pengajuans.*', 'pengajuans.status', 'pengajuans.no_dokumen_perjalanan', 'pengajuans.status_orang_tua', 'pengajuans.name_orang_tua', 'pengajuans.nik_orang_tua', 'pengajuans.name_bayi', 'pengajuans.jenis_kelamin_bayi', 'pengajuans.tempat_dilahirkan', 'pengajuans.tanggal_lahir_bayi', 'pengajuans.waktu_lahir', 'pengajuans.jenis_kelahiran', 'pengajuans.kelahiran_ke', 'pengajuans.penolong_kelahiran', 'pengajuans.berat_bayi', 'pengajuans.panjang_bayi', 'pengajuans.status_ayah', 'pengajuans.name_ayah', 'pengajuans.nik_ayah', 'pengajuans.status_ibu', 'pengajuans.name_ibu', 'pengajuans.nik_ibu', 'pengajuans.name_jenazah', 'pengajuans.tanggal_kematian', 'pengajuans.waktu_kematian', 'pengajuans.sebab_kematian', 'pengajuans.tempat_kematian', 'pengajuans.saksi_keterangan_kematian', 'pengajuans.jenis_usaha', 'pengajuans.keterangan', 'penduduks.name', 'penduduks.email', 'penduduks.pekerjaan', 'penduduks.tanggal_lahir', 'penduduks.tempat_lahir', 'penduduks.jenis_kelamin', 'penduduks.alamat', 'penduduks.agama', 'penduduks.no_hp', 'jenis_surats.name_surat')
+            ->where('pengajuans.id', $pengajuan_id)
+            ->firstOrFail();
+        // dd($pengajuans);
+        return view('surat.suratketeranganbedanama', ['pengajuans' => $pengajuans]);
+    }
+
+    public function suratpernyataanbelumtidakbekerja($pengajuan_id)
+    {
+        $pengajuans = Pengajuan::join('penduduks', 'pengajuans.nik_penduduk', '=', 'penduduks.nik')
+            ->join('jenis_surats', 'pengajuans.id_jenis_surat', '=', 'jenis_surats.id')
+            ->select('pengajuans.*', 'pengajuans.status', 'pengajuans.no_dokumen_perjalanan', 'pengajuans.status_orang_tua', 'pengajuans.name_orang_tua', 'pengajuans.nik_orang_tua', 'pengajuans.name_bayi', 'pengajuans.jenis_kelamin_bayi', 'pengajuans.tempat_dilahirkan', 'pengajuans.tanggal_lahir_bayi', 'pengajuans.waktu_lahir', 'pengajuans.jenis_kelahiran', 'pengajuans.kelahiran_ke', 'pengajuans.penolong_kelahiran', 'pengajuans.berat_bayi', 'pengajuans.panjang_bayi', 'pengajuans.status_ayah', 'pengajuans.name_ayah', 'pengajuans.nik_ayah', 'pengajuans.status_ibu', 'pengajuans.name_ibu', 'pengajuans.nik_ibu', 'pengajuans.name_jenazah', 'pengajuans.tanggal_kematian', 'pengajuans.waktu_kematian', 'pengajuans.sebab_kematian', 'pengajuans.tempat_kematian', 'pengajuans.saksi_keterangan_kematian', 'pengajuans.jenis_usaha', 'pengajuans.keterangan', 'penduduks.name', 'penduduks.email', 'penduduks.pekerjaan', 'penduduks.tanggal_lahir', 'penduduks.tempat_lahir', 'penduduks.jenis_kelamin', 'penduduks.alamat', 'penduduks.agama', 'penduduks.no_hp', 'jenis_surats.name_surat')
+            ->where('pengajuans.id', $pengajuan_id)
+            ->firstOrFail();
+        // dd($pengajuans);
+        return view('surat.suratpernyataanbelumtidakbekerja', ['pengajuans' => $pengajuans]);
+    }
+
+    public function test()
+    {
+        return view('surat.suratketerangantidakmampu');
+    }
+
 
     /**
      * Show the form for creating a new resource.

@@ -87,13 +87,50 @@
                                                         title="Print">
                                                     </a>
                                                 @else
-                                                    <a href="#" class="btn-print" role="button"
-                                                        data-id="{{ $pengajuans->id }}" title="Cetak"
-                                                        onclick="printSuratDesa({{ $pengajuans->id }})">
+                                                    @php
+                                                        switch ($pengajuans->id_jenis_surat) {
+                                                            case 1:
+                                                                $routeName = 'penduduk.suratketerangantidakmampu';
+                                                                break;
+                                                            case 2:
+                                                                $routeName = 'penduduk.suratkelahiran';
+                                                                break;
+                                                            case 3:
+                                                                $routeName = 'penduduk.suratkematian';
+                                                                break;
+                                                            case 4:
+                                                                $routeName = 'penduduk.suratketeranganusaha';
+                                                                break;
+                                                            case 5:
+                                                                $routeName = 'penduduk.suratketeranganpengantar';
+                                                                break;
+                                                            case 6:
+                                                                $routeName = 'penduduk.suratketerangankelakuanbaik';
+                                                                break;
+                                                            case 7:
+                                                                $routeName = 'penduduk.suratketeranganijinorangtuawali';
+                                                                break;
+                                                            case 8:
+                                                                $routeName = 'penduduk.suratketeranganbedanama';
+                                                                break;
+                                                            case 9:
+                                                                $routeName = 'penduduk.suratpernyataanbelumtidakbekerja';
+                                                                break;
+                                                            default:
+                                                                $routeName = 'penduduk.pengajuan'; // Atur nilai default sesuai kebutuhan
+                                                                break;
+                                                        }
+                                                    @endphp
+
+                                                    <a href="{{ route($routeName, ['pengajuans' => $pengajuans->id]) }}"
+                                                        title="print">
                                                         <img src="{{ asset('img') }}/print-icon.svg"
                                                             style="color: #6c757d;">
                                                     </a>
-                                                    {{-- <a type="button" title="Print" onclick="printToPDF()">
+
+                                                    {{-- <a href="#" class="btn-print" role="button"
+                                                        data-id="{{ $pengajuans->id }}" title="Cetak"
+                                                        onclick="printSuratDesa({{ $pengajuans->id }})">
                                                         <img src="{{ asset('img') }}/print-icon.svg"
                                                             style="color: #6c757d;">
                                                     </a> --}}

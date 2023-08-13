@@ -68,10 +68,6 @@
                                     <input type="hidden" name="id_jenis_surat" class="form-control" id="id_jenis_surat"
                                         value="{{ $pengajuans->id_jenis_surat }}" placeholder="Enter Jenis Surat">
                                 </div>
-                                <div class="form-group">
-                                    <input type="hidden" name="no_dokumen" class="form-control" id="no_dokumen"
-                                        value="{{ $pengajuans->no_dokumen }}" placeholder="Enter No Dokumen">
-                                </div>
                             </div>
                             <!-- /.card-body -->
                             <div class="card-footer">

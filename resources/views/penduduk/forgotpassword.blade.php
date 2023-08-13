@@ -1,4 +1,4 @@
-@extends('layouts.apppenduduklogin')
+@extends('layouts.apppendudukforgotpassword')
 @section('extrahead')
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css">
     <link rel="stylesheet" href="{{ asset('assets/css/views/login.css') }}">
@@ -29,11 +29,10 @@
                         <div class="logo-sm d-flex section-text-login" style="margin-bottom: 16px;">
                             <img src="{{ asset('kota-pariaman.png') }}" alt="Kota Pariaman" style="width: 40px">
                         </div>
-                        <form class="js-validation-signin signIn" action="{{ route('penduduk.authenticate') }}"
-                            method="post">
+                        <form class="js-validation-signin signIn">
                             <div class="section-text-login">
-                                <h4>Masuk ke akun Anda</h4>
-                                <p>Selamat Datang kembali! Silakan login.</p>
+                                <h4>Lupa Password Anda?</h4>
+                                <p>Jangan Khawatir! Silakan Isi Form Dan Klik Submit.</p>
                             </div>
 
                             {{ csrf_field() }}
@@ -48,36 +47,20 @@
                                 </div>
                             </div>
 
-
                             <div class="row">
-                                <div class="form-group col-md-12 mb-10">
+                                <div class="form-group col-md-12">
                                     <div class="form-custom-border">
-                                        <label class="label-title">Password</label>
-                                        <input type="password" class="form-control mb-1" name="password" id="password"
-                                            onkeyup='check();' placeholder="Masukan Kata Sandi">
-                                        <span class="password-toggle__icon" onclick="togglePasswordVisibility(this)"><i
-                                                class="fa fa-eye" style="margin-top: 28px; margin-right: 20px"></i></span>
-                                        <a href="{{ route('penduduk.forgotpassword') }}"><label class="label-title" style="color: #3f9ce8">Forgot Password??</label></a>
+                                        <label class="label-title" for="nama">Nama</label>
+
+                                        <input type="nama" name="nama" id="nama" class="form-control"
+                                            value="" placeholder="Masukan Nama" autocomplete="nama">
                                     </div>
                                 </div>
                             </div>
-
-                            <div class="form-group row">
-                                <div class="custom-control custom-checkbox" style="margin-left: 11px">
-                                    <span class="label-remember" for="Register" style="margin-left: -18px;">Belum Punya
-                                        Akun? <a href="{{ route('penduduk.register') }}">Register
-                                            Disini!!</a></span><br><br>
-                                    <input class="form-check-input" type="checkbox" name="remember" id="remember"
-                                        {{ old('remember') ? 'checked' : '' }}>
-                                    <label class="label-remember" for="login-remember-me">Ingat Saya</label>
-                                </div>
-                            </div>
-                            <div class="form-group mt-10">
-                                <button type="submit" class="btn btn-primary-dark w-100">
-                                    Masuk
-                                </button>
-                            </div>
                         </form>
+                        <button type="submit" class="btn btn-primary-dark w-100" onclick="redirectToWhatsApp()">
+                            Submit
+                        </button>
                         <!-- END Sign In Form -->
                     </div>
                 </div>
@@ -196,7 +179,11 @@
             $(".form-control").css("border", "1px solid #ff0000");
         </script>
     @endif
-
+    <script>
+        function redirectToWhatsApp() {
+            window.location.href = "https://wa.me/6281374821410?text=saya lupa password akun saya, ini nik saya 'isi dengan nik anda'";
+        }
+    </script>
     <script>
         localStorage.setItem('menu_active', 1)
         $(document).ready(function() {

@@ -83,13 +83,49 @@
                                                         title="Print">
                                                     </a>
                                                 @else
-                                                    <a href="#" class="btn-print" role="button"
-                                                        data-id="{{ $pengajuans->id }}" title="Cetak"
-                                                        onclick="printSuratDesa({{ $pengajuans->id }})">
+                                                    @php
+                                                        switch ($pengajuans->id_jenis_surat) {
+                                                            case 1:
+                                                                $routeName = 'pegawai.suratketerangantidakmampu';
+                                                                break;
+                                                            case 2:
+                                                                $routeName = 'pegawai.suratkelahiran';
+                                                                break;
+                                                            case 3:
+                                                                $routeName = 'pegawai.suratkematian';
+                                                                break;
+                                                            case 4:
+                                                                $routeName = 'pegawai.suratketeranganusaha';
+                                                                break;
+                                                            case 5:
+                                                                $routeName = 'pegawai.suratketeranganpengantar';
+                                                                break;
+                                                            case 6:
+                                                                $routeName = 'pegawai.suratketerangankelakuanbaik';
+                                                                break;
+                                                            case 7:
+                                                                $routeName = 'pegawai.suratketeranganijinorangtuawali';
+                                                                break;
+                                                            case 8:
+                                                                $routeName = 'pegawai.suratketeranganbedanama';
+                                                                break;
+                                                            case 9:
+                                                                $routeName = 'pegawai.suratpernyataanbelumtidakbekerja';
+                                                                break;
+                                                            default:
+                                                                $routeName = 'pegawai.pengajuan'; // Atur nilai default sesuai kebutuhan
+                                                                break;
+                                                        }
+                                                    @endphp
+
+                                                    <a href="{{ route($routeName, ['pengajuans' => $pengajuans->id]) }}"
+                                                        title="print">
                                                         <img src="{{ asset('img') }}/print-icon.svg"
                                                             style="color: #6c757d;">
                                                     </a>
-                                                    {{-- <a type="button" title="Print" onclick="printToPDF()">
+                                                    {{-- <a href="#" class="btn-print" role="button"
+                                                        data-id="{{ $pengajuans->id }}" title="Cetak"
+                                                        onclick="printSuratDesa({{ $pengajuans->id }})">
                                                         <img src="{{ asset('img') }}/print-icon.svg"
                                                             style="color: #6c757d;">
                                                     </a> --}}
@@ -556,7 +592,8 @@
                     var statusText = response.data.status === "1" ? "Disetujui" : response
                         .data.status === "0" ? "Belum Disetujui" : "-";
                     $('#status').text(statusText);
-                    $('#no_dokumen_perjalanan').text(response.data.no_dokumen_perjalanan || "-");
+                    $('#no_dokumen_perjalanan').text(response.data.no_dokumen_perjalanan ||
+                        "-");
 
                     // Surat Keterangan Tidak Mampu, Pengantar, Kelakuan Baik
                     $('#status_orang_tua').text(response.data.status_orang_tua || "-");
@@ -587,11 +624,11 @@
                     $('#name_jenazah').text(response.data.name_jenazah || "-");
                     $('#tanggal_kematian').text(response.data.tanggal_kematian ? new Date(
                         response.data.tanggal_kematian).toLocaleDateString(
-                    'id-ID', {
-                        day: 'numeric',
-                        month: 'long',
-                        year: 'numeric'
-                    }) : "-");
+                        'id-ID', {
+                            day: 'numeric',
+                            month: 'long',
+                            year: 'numeric'
+                        }) : "-");
                     $('#waktu_kematian').text(response.data.waktu_kematian || "-");
                     $('#sebab_kematian').text(response.data.sebab_kematian || "-");
                     $('#tempat_kematian').text(response.data.tempat_kematian || "-");
