@@ -29,7 +29,7 @@
                         <div class="logo-sm d-flex section-text-login" style="margin-bottom: 16px;">
                             <img src="{{ asset('kota-pariaman.png') }}" alt="Kota Pariaman" style="width: 40px">
                         </div>
-                        <form class="js-validation-signin signIn">
+                        <form class="js-validation-signin signIn" action="" method="POST">
                             <div class="section-text-login">
                                 <h4>Lupa Password Anda?</h4>
                                 <p>Jangan Khawatir! Silakan Isi Form Dan Klik Submit.</p>
@@ -39,36 +39,17 @@
                             <div class="row">
                                 <div class="form-group col-md-12">
                                     <div class="form-custom-border">
-                                        <label class="label-title" for="nik">NIK</label>
+                                        <label class="label-title" for="email">Email</label>
 
-                                        <input type="text" name="nik" id="nik" class="form-control"
-                                            value="" placeholder="Masukkan NIK" autocomplete="nik" required
-                                            pattern="\d{16}" title="NIK harus terdiri dari 16 angka">
-
+                                        <input type="email" name="email" id="email" class="form-control"
+                                            value="" placeholder="Masukan Email" autocomplete="email">
                                     </div>
                                 </div>
                             </div>
-
-                            <div class="row">
-                                <div class="form-group col-md-12">
-                                    <div class="form-custom-border">
-                                        <label class="label-title" for="name">Name</label>
-
-                                        <input type="name" name="name" required id="name" class="form-control"
-                                            value="" placeholder="Masukan Name" autocomplete="name">
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="form-group row">
-                                <div class="custom-control custom-checkbox" style="margin-left: 11px">
-                                    <span class="label-remember" for="Register" style="margin-left: -18px;">Tidak Jadi Lupa Password? <a href="{{ route('penduduk.login') }}">Login
-                                            Disini!!</a></span><br><br>
-                                </div>
-                            </div>
-                            <button type="submit" class="btn btn-primary-dark w-100" onclick="redirectToWhatsApp()">
-                                Submit
-                            </button>
                         </form>
+                        <button type="submit" class="btn btn-primary-dark w-100" onclick="redirectToWhatsApp()">
+                            Submit
+                        </button>
                         <!-- END Sign In Form -->
                     </div>
                 </div>
@@ -189,12 +170,7 @@
     @endif
     <script>
         function redirectToWhatsApp() {
-            var nikValue = document.getElementById('nik').value;
-            var nameValue = document.getElementById('name').value;
-            var whatsappUrl =
-                "https://wa.me/6281374821410?text=Saya%20lupa%20password%20akun%20saya,%20ini%20NIK%20saya%20" + nikValue +
-                " dan ini Nama saya " + nameValue;
-            window.location.href = whatsappUrl;
+            window.location.href = "https://wa.me/6281374821410?text=saya lupa password akun saya, ini nik saya 'isi dengan nik anda'";
         }
     </script>
     <script>

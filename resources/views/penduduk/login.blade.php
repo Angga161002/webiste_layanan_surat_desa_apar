@@ -42,8 +42,9 @@
                                     <div class="form-custom-border">
                                         <label class="label-title" for="nik">NIK</label>
 
-                                        <input type="nik" name="nik" id="nik" class="form-control"
-                                            value="" placeholder="Masukan NIK" autocomplete="nik">
+                                        <input type="text" name="nik" id="nik" class="form-control"
+                                            value="" placeholder="Masukkan NIK" autocomplete="nik" required
+                                            pattern="\d{16}" title="NIK harus terdiri dari 16 angka">
                                     </div>
                                 </div>
                             </div>
@@ -56,8 +57,9 @@
                                         <input type="password" class="form-control mb-1" name="password" id="password"
                                             onkeyup='check();' placeholder="Masukan Kata Sandi">
                                         <span class="password-toggle__icon" onclick="togglePasswordVisibility(this)"><i
-                                                class="fa fa-eye" style="margin-top: 28px; margin-right: 20px"></i></span>
-                                        <a href="{{ route('penduduk.forgotpassword') }}"><label class="label-title" style="color: #3f9ce8">Forgot Password??</label></a>
+                                                class="fa fa-eye" style="margin-right: 20px"></i></span>
+                                        <a href="{{ route('penduduk.forgotpassword') }}"><label class="label-title"
+                                                style="color: #3f9ce8">Forgot Password??</label></a>
                                     </div>
                                 </div>
                             </div>

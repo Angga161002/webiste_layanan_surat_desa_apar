@@ -49,10 +49,111 @@ class PegawaiController extends Controller
 
     public function index()
     {
-        $data = [];
-        $pegawai = Pegawai::where('id', '=', Session::get('id'))->first();
+        $data['jenissurats'] = JenisSurat::all();
+        $data['pengajuans'] = Pengajuan::all();
+        $data['suratketerangantidakmampucount'] = Pengajuan::where('id_jenis_surat', 1)->count();
+        $data['suratketerangantidakmampucountd'] = Pengajuan::where('id_jenis_surat', 1)
+            ->where('status', '1')
+            ->count();
+        // dd($data['suratketerangantidakmampucountd']);
+        $data['suratketerangantidakmampucountbd'] = Pengajuan::where('id_jenis_surat', 1)
+            ->where(function ($query) {
+                $query->where('status', '0')
+                    ->orWhereNull('status');
+            })
+            ->count();
+        $data['suratkelahirancount'] = Pengajuan::where('id_jenis_surat', 2)->count();
+        $data['suratkelahirancountd'] = Pengajuan::where('id_jenis_surat', 2)
+            ->where('status', '1')
+            ->count();
+        // dd($data['suratkelahirancountd']);
+        $data['suratkelahirancountbd'] = Pengajuan::where('id_jenis_surat', 2)
+            ->where(function ($query) {
+                $query->where('status', '0')
+                    ->orWhereNull('status');
+            })
+            ->count();
+        $data['suratkematiancount'] = Pengajuan::where('id_jenis_surat', 3)->count();
+        $data['suratkematiancountd'] = Pengajuan::where('id_jenis_surat', 3)
+            ->where('status', '1')
+            ->count();
+        // dd($data['suratkematiancountd']);
+        $data['suratkematiancountbd'] = Pengajuan::where('id_jenis_surat', 3)
+            ->where(function ($query) {
+                $query->where('status', '0')
+                    ->orWhereNull('status');
+            })
+            ->count();
+        $data['suratketeranganusahacount'] = Pengajuan::where('id_jenis_surat', 4)->count();
+        $data['suratketeranganusahacountd'] = Pengajuan::where('id_jenis_surat', 4)
+            ->where('status', '1')
+            ->count();
+        // dd($data['suratketeranganusahacountd']);
+        $data['suratketeranganusahacountbd'] = Pengajuan::where('id_jenis_surat', 4)
+            ->where(function ($query) {
+                $query->where('status', '0')
+                    ->orWhereNull('status');
+            })
+            ->count();
+        $data['suratketeranganpengantarcount'] = Pengajuan::where('id_jenis_surat', 5)->count();
+        $data['suratketeranganpengantarcountd'] = Pengajuan::where('id_jenis_surat', 5)
+            ->where('status', '1')
+            ->count();
+        // dd($data['suratketeranganpengantarcountd']);
+        $data['suratketeranganpengantarcountbd'] = Pengajuan::where('id_jenis_surat', 5)
+            ->where(function ($query) {
+                $query->where('status', '0')
+                    ->orWhereNull('status');
+            })
+            ->count();
+        $data['suratketerangankelakuanbaikcount'] = Pengajuan::where('id_jenis_surat', 6)->count();
+        $data['suratketerangankelakuanbaikcountd'] = Pengajuan::where('id_jenis_surat', 6)
+            ->where('status', '1')
+            ->count();
+        // dd($data['suratketerangankelakuanbaikcountd']);
+        $data['suratketerangankelakuanbaikcountbd'] = Pengajuan::where('id_jenis_surat', 6)
+            ->where(function ($query) {
+                $query->where('status', '0')
+                    ->orWhereNull('status');
+            })
+            ->count();
+        $data['suratketeranganijinorangtuawalicount'] = Pengajuan::where('id_jenis_surat', 7)->count();
+        $data['suratketeranganijinorangtuawalicountd'] = Pengajuan::where('id_jenis_surat', 7)
+            ->where('status', '1')
+            ->count();
+        // dd($data['suratketeranganijinorangtuawalicountd']);
+        $data['suratketeranganijinorangtuawalicountbd'] = Pengajuan::where('id_jenis_surat', 7)
+            ->where(function ($query) {
+                $query->where('status', '0')
+                    ->orWhereNull('status');
+            })
+            ->count();
+        $data['suratketeranganbedanamacount'] = Pengajuan::where('id_jenis_surat', 8)->count();
+        $data['suratketeranganbedanamacountd'] = Pengajuan::where('id_jenis_surat', 8)
+            ->where('status', '1')
+            ->count();
+        // dd($data['suratketeranganbedanamacountd']);
+        $data['suratketeranganbedanamacountbd'] = Pengajuan::where('id_jenis_surat', 8)
+            ->where(function ($query) {
+                $query->where('status', '0')
+                    ->orWhereNull('status');
+            })
+            ->count();
+        $data['suratpernyataanbelumtidakbekerjacount'] = Pengajuan::where('id_jenis_surat', 9)->count();
+        $data['suratpernyataanbelumtidakbekerjacountd'] = Pengajuan::where('id_jenis_surat', 9)
+            ->where('status', '1')
+            ->count();
+        // dd($data['suratpernyataanbelumtidakbekerjacountd']);
+        $data['suratpernyataanbelumtidakbekerjacountbd'] = Pengajuan::where('id_jenis_surat', 9)
+            ->where(function ($query) {
+                $query->where('status', '0')
+                    ->orWhereNull('status');
+            })
+            ->count();
+        // dd($pegawais->all());
+        $data['pegawai'] = Pegawai::where('id', '=', Session::get('id'))->first();
         // dd($pegawai->all());
-        return view('pegawai.dashboard', compact('pegawai'));
+        return view('pegawai.dashboard', $data);
     }
 
     //Pegawai

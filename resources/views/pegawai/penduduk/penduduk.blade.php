@@ -57,8 +57,8 @@
                                             <td>{{ $loop->iteration }}</td>
                                             <td>{{ $penduduks->nik }}</td>
                                             <td>{{ $penduduks->name }}</td>
-                                            <td>{{ $penduduks->email }}</td>
-                                            <td>{{ $penduduks->no_hp }}</td>
+                                            <td>{{ $penduduks->email ? $penduduks->email : '-' }}</td>
+                                            <td>{{ $penduduks->no_hp ? $penduduks->no_hp : '-' }}</td>
                                             <td><a type="button" class="btn-detail" data-nik={{ $penduduks->nik }}
                                                     title="Detail">
                                                     <img src="{{ asset('img') }}/eye-line-dark.svg">

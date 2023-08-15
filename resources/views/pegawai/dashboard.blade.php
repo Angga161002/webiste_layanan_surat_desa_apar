@@ -13,12 +13,12 @@
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-sm-6">
-                    <h1 class="m-0">Dashboard</h1>
+                    <h1 class="m-0">Dashboard Pegawai</h1>
                 </div><!-- /.col -->
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
                         <li class="breadcrumb-item"><a href="#">Home</a></li>
-                        <li class="breadcrumb-item active">Dashboard</li>
+                        <li class="breadcrumb-item active">Dashboard Pegawai</li>
                     </ol>
                 </div><!-- /.col -->
             </div><!-- /.row -->
@@ -35,14 +35,15 @@
                     <!-- small box -->
                     <div class="small-box bg-info">
                         <div class="inner">
-                            <h3>150</h3>
+                            <h3>{{ $suratketerangantidakmampucountbd }}</h3>
 
-                            <p>New Orders</p>
+                            <p>Surat Keterangan Tidak</p>
+                            <p style="margin-top: -20px;">Mampu</p>
                         </div>
                         <div class="icon">
-                            <i class="ion ion-bag"></i>
+                            <i class="fa fa-file-alt"></i>
                         </div>
-                        <a href="#" class="small-box-footer">More info <i
+                        <a href="{{ route('pegawai.pengajuan') }}" class="small-box-footer">More info <i
                                 class="fas fa-arrow-circle-right"></i></a>
                     </div>
                 </div>
@@ -51,14 +52,15 @@
                     <!-- small box -->
                     <div class="small-box bg-success">
                         <div class="inner">
-                            <h3>53<sup style="font-size: 20px">%</sup></h3>
+                            <h3>{{ $suratkelahirancountbd }}</h3>
 
-                            <p>Bounce Rate</p>
+                            <p>Surat Kelahiran</p>
+                            <p style="margin-top: -20px;">Belum Disetujui</p>
                         </div>
                         <div class="icon">
-                            <i class="ion ion-stats-bars"></i>
+                            <i class="fa fa-file-alt"></i>
                         </div>
-                        <a href="#" class="small-box-footer">More info <i
+                        <a href="{{ route('pegawai.pengajuan') }}" class="small-box-footer">More info <i
                                 class="fas fa-arrow-circle-right"></i></a>
                     </div>
                 </div>
@@ -67,14 +69,15 @@
                     <!-- small box -->
                     <div class="small-box bg-warning">
                         <div class="inner">
-                            <h3>44</h3>
+                            <h3>{{ $suratkematiancountbd }}</h3>
 
-                            <p>User Registrations</p>
+                            <p>Surat Kematian</p>
+                            <p style="margin-top: -20px;">Belum Disetujui</p>
                         </div>
                         <div class="icon">
-                            <i class="ion ion-person-add"></i>
+                            <i class="fa fa-file-alt"></i>
                         </div>
-                        <a href="#" class="small-box-footer">More info <i
+                        <a href="{{ route('pegawai.pengajuan') }}" class="small-box-footer">More info <i
                                 class="fas fa-arrow-circle-right"></i></a>
                     </div>
                 </div>
@@ -83,22 +86,114 @@
                     <!-- small box -->
                     <div class="small-box bg-danger">
                         <div class="inner">
-                            <h3>65</h3>
+                            <h3>{{ $suratketeranganusahacountbd }}</h3>
 
-                            <p>Unique Visitors</p>
+                            <p>Surat Keterangan Usaha</p>
+                            <p style="margin-top: -20px;">Belum Disetujui</p>
                         </div>
                         <div class="icon">
-                            <i class="ion ion-pie-graph"></i>
+                            <i class="fa fa-file-alt"></i>
                         </div>
-                        <a href="#" class="small-box-footer">More info <i
+                        <a href="{{ route('pegawai.pengajuan') }}" class="small-box-footer">More info <i
+                                class="fas fa-arrow-circle-right"></i></a>
+                    </div>
+                </div>
+                {{-- <!-- ./col -->
+                <div class="col-lg-3 col-6">
+                    <!-- small box -->
+                    <div class="small-box bg-danger">
+                        <div class="inner">
+                            <h3>{{ $suratketeranganpengantarcountbd }}</h3>
+
+                            <p>Surat Keterangan Pengantar</p>
+                            <p style="margin-top: -20px;">Belum Disetujui</p>
+                        </div>
+                        <div class="icon">
+                            <i class="fa fa-file-alt"></i>
+                        </div>
+                        <a href="{{ route('pegawai.pengajuan') }}" class="small-box-footer">More info <i
                                 class="fas fa-arrow-circle-right"></i></a>
                     </div>
                 </div>
                 <!-- ./col -->
+                <div class="col-lg-3 col-6">
+                    <!-- small box -->
+                    <div class="small-box bg-success">
+                        <div class="inner">
+                            <h3>{{ $suratketerangankelakuanbaikcountbd }}</h3>
+
+                            <p>Surat Keterangan Kelakuan</p>
+                            <p style="margin-top: -20px;">Baik</p>
+                        </div>
+                        <div class="icon">
+                            <i class="fa fa-file-alt"></i>
+                        </div>
+                        <a href="{{ route('pegawai.pengajuan') }}" class="small-box-footer">More info <i
+                                class="fas fa-arrow-circle-right"></i></a>
+                    </div>
+                </div>
+                <!-- ./col -->
+                <div class="col-lg-3 col-6">
+                    <!-- small box -->
+                    <div class="small-box bg-warning">
+                        <div class="inner">
+                            <h3>{{ $suratketeranganijinorangtuawalicountbd }}</h3>
+
+                            <p>Surat Keterangan Ijin</p>
+                            <p style="margin-top: -20px;">Orang Tua / Wali</p>
+                        </div>
+                        <div class="icon">
+                            <i class="fa fa-file-alt"></i>
+                        </div>
+                        <a href="{{ route('pegawai.pengajuan') }}" class="small-box-footer">More info <i
+                                class="fas fa-arrow-circle-right"></i></a>
+                    </div>
+                </div>
+                <!-- ./col -->
+                <div class="col-lg-3 col-6">
+                    <!-- small box -->
+                    <div class="small-box bg-info">
+                        <div class="inner">
+                            <h3>{{ $suratketeranganbedanamacountbd }}</h3>
+
+                            <p>Surat Keterangan Beda</p>
+                            <p style="margin-top: -20px;">Nama</p>
+                        </div>
+                        <div class="icon">
+                            <i class="fa fa-file-alt"></i>
+                        </div>
+                        <a href="{{ route('pegawai.pengajuan') }}" class="small-box-footer">More info <i
+                                class="fas fa-arrow-circle-right"></i></a>
+                    </div>
+                </div>
+                <!-- ./col -->
+                <div class="col-lg-4 col-6">
+                </div>
+                <!-- ./col -->
+                <div class="col-lg-4 col-6">
+                    <!-- small box -->
+                    <div class="small-box bg-info">
+                        <div class="inner">
+                            <h3>{{ $suratpernyataanbelumtidakbekerjacountbd }}</h3>
+
+                            <p>Surat Keterangan Pernyataan</p>
+                            <p style="margin-top: -20px;">Belum / Tidak Bekerja</p>
+                        </div>
+                        <div class="icon">
+                            <i class="fa fa-file-alt"></i>
+                        </div>
+                        <a href="{{ route('pegawai.pengajuan') }}" class="small-box-footer">More info <i
+                                class="fas fa-arrow-circle-right"></i></a>
+                    </div>
+                </div>
+                <!-- ./col -->
+                <div class="col-lg-4 col-6">
+                </div>
+                <!-- ./col --> --}}
             </div>
             <!-- /.row -->
             <!-- Main row -->
-            <div class="row">
+            {{-- <div class="row">
                 <!-- Left col -->
                 <section class="col-lg-7 connectedSortable">
                     <!-- Custom tabs (Charts with tabs)-->
@@ -359,6 +454,106 @@
                     <!-- /.card -->
                 </section>
                 <!-- right col -->
+            </div> --}}
+            <div class="row">
+                <div class="col-12">
+                    <div class="card">
+                        <div class="card-header">
+                            <h3 class="card-title">Table List Data Status Pengajuan</h3>
+                        </div>
+                        <!-- /.card-header -->
+                        <div class="card-body">
+                            <table id="example1" class="table table-bordered table-striped">
+                                <thead>
+                                    <tr>
+                                        <th>NO</th>
+                                        <th>Name Surat</th>
+                                        <th>Jumlah Pengajuan</th>
+                                        <th>Disetujui</th>
+                                        <th>Belum Disetujui</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>1</td>
+                                        <td>Surat Keterangan Tidak Mampu</td>
+                                        <td>{{ $suratketerangantidakmampucount }}</td>
+                                        <td>{{ $suratketerangantidakmampucountd }}</td>
+                                        <td>{{ $suratketerangantidakmampucountbd }}</td>
+                                    </tr>
+                                    <tr>
+                                        <td>2</td>
+                                        <td>Surat Kelahiran</td>
+                                        <td>{{ $suratkelahirancount }}</td>
+                                        <td>{{ $suratkelahirancountd }}</td>
+                                        <td>{{ $suratkelahirancountbd }}</td>
+                                    </tr>
+                                    <tr>
+                                        <td>3</td>
+                                        <td>Surat Kematian</td>
+                                        <td>{{ $suratkematiancount }}</td>
+                                        <td>{{ $suratkematiancountd }}</td>
+                                        <td>{{ $suratkematiancountbd }}</td>
+                                    </tr>
+                                    <tr>
+                                        <td>4</td>
+                                        <td>Surat Keterangan Usaha</td>
+                                        <td>{{ $suratketeranganusahacount }}</td>
+                                        <td>{{ $suratketeranganusahacountd }}</td>
+                                        <td>{{ $suratketeranganusahacountbd }}</td>
+                                    </tr>
+                                    <tr>
+                                        <td>5</td>
+                                        <td>Surat Keterangan Pengantar</td>
+                                        <td>{{ $suratketeranganpengantarcount }}</td>
+                                        <td>{{ $suratketeranganpengantarcountd }}</td>
+                                        <td>{{ $suratketeranganpengantarcountbd }}</td>
+                                    </tr>
+                                    <tr>
+                                        <td>6</td>
+                                        <td>Surat Keterangan Kelakuan Baik</td>
+                                        <td>{{ $suratketerangankelakuanbaikcount }}</td>
+                                        <td>{{ $suratketerangankelakuanbaikcountd }}</td>
+                                        <td>{{ $suratketerangankelakuanbaikcountbd }}</td>
+                                    </tr>
+                                    <tr>
+                                        <td>7</td>
+                                        <td>Surat Keterangan Ijin Orang Tua / Wali</td>
+                                        <td>{{ $suratketeranganijinorangtuawalicount }}</td>
+                                        <td>{{ $suratketeranganijinorangtuawalicountd }}</td>
+                                        <td>{{ $suratketeranganijinorangtuawalicountbd }}</td>
+                                    </tr>
+                                    <tr>
+                                        <td>8</td>
+                                        <td>Surat Keterangan Beda Nama</td>
+                                        <td>{{ $suratketeranganbedanamacount }}</td>
+                                        <td>{{ $suratketeranganbedanamacountd }}</td>
+                                        <td>{{ $suratketeranganbedanamacountbd }}</td>
+                                    </tr>
+                                    <tr>
+                                        <td>9</td>
+                                        <td>Surat Pernyataan Belum / Tidak Bekerja</td>
+                                        <td>{{ $suratpernyataanbelumtidakbekerjacount }}</td>
+                                        <td>{{ $suratpernyataanbelumtidakbekerjacountd }}</td>
+                                        <td>{{ $suratpernyataanbelumtidakbekerjacountbd }}</td>
+                                    </tr>
+                                </tbody>
+                                <tfoot>
+                                    <tr>
+                                        <th>NO</th>
+                                        <th>Name Surat</th>
+                                        <th>Jumlah Pengajuan</th>
+                                        <th>Disetujui</th>
+                                        <th>Belum Disetujui</th>
+                                    </tr>
+                                </tfoot>
+                            </table>
+                        </div>
+                        <!-- /.card-body -->
+                    </div>
+                    <!-- /.card -->
+                </div>
+                <!-- /.col -->
             </div>
             <!-- /.row (main row) -->
         </div><!-- /.container-fluid -->

@@ -32,7 +32,7 @@
                         <form class="js-validation-signin signIn" action="{{ route('penduduk.authenticateregister') }}"
                             method="post">
                             <div class="section-text-login">
-                                <h4>Buat akun Baru Anda</h4>
+                                <h4>Buat Akun Baru Anda</h4>
                                 <p>Selamat Datang kembali! Silakan Register.</p>
                             </div>
 
