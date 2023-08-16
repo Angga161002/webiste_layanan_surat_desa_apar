@@ -335,7 +335,7 @@
                             </div>
                             <!-- /.card-body -->
                             <div class="card-footer">
-                                <a href="{{ route('penduduk') }}" type="button"
+                                <a href="{{ route('penduduk.pengajuan') }}" type="button"
                                     class="btn btn-secondary">Kembali</a>
                                 <button type="submit" class="btn btn-primary float-right">Ajukan Surat</button>
                             </div>

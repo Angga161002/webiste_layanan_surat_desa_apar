@@ -30,7 +30,9 @@
         <div class="container-fluid">
             <div class="row">
                 <!-- left column -->
-                <div class="col-md-12">
+                <div class="col-md-2">
+                </div>
+                <div class="col-md-8">
                     <!-- jquery validation -->
                     <div class="card card-primary">
                         <div class="card-header">
@@ -114,6 +116,8 @@
                         </form>
                     </div>
                     <!-- /.card -->
+                </div>
+                <div class="col-md-2">
                 </div>
                 <!--/.col (left) -->
                 <!-- right column -->
