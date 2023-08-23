@@ -16,7 +16,7 @@
               </div>
               <div class="info">
                   <a href="{{ route('penduduk.profile') }}" class="d-block">
-                  {{ $penduduk->name }}
+                      {{ $penduduk->name }}
                   </a>
               </div>
           </div>
@@ -92,7 +92,7 @@
                   <li class="nav-item" style="margin-left: 5px;">
                       <form action="{{ route('penduduk.logout') }}" method="post">
                           @csrf
-                          <button type="submit" class="nav-link" onclick="toggleActive(this)"
+                          <button type="button" class="nav-link" onclick="buttonLogout(this)"
                               style="border: none; background: none; color: #c2c7d0; margin-left: -62px;"><i
                                   class="nav-icon fa fa-arrow-circle-right"></i>
                               Log Out </button>
@@ -104,3 +104,26 @@
       </div>
       <!-- /.sidebar -->
   </aside>
+  <!-- Tambahkan SweetAlert CDN di bagian head jika belum ada -->
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+  <script>
+      function buttonLogout(button) {
+          // Tampilkan SweetAlert untuk konfirmasi log out
+          Swal.fire({
+              title: 'Konfirmasi Log Out',
+              text: "Anda yakin ingin keluar?",
+              icon: 'warning',
+              showCancelButton: true,
+              confirmButtonColor: '#3085d6',
+              cancelButtonColor: '#d33',
+              confirmButtonText: 'Ya, Log Out',
+              cancelButtonText: 'Batal'
+          }).then((result) => {
+              if (result.isConfirmed) {
+                  // Jika tombol "Ya, Log Out" diklik, submit form log out
+                  button.closest('form').submit();
+              }
+          });
+      }
+  </script>

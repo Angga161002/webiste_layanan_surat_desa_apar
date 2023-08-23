@@ -17,8 +17,9 @@
                 </div>
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
-                        <li class="breadcrumb-item"><a href="#">Dashboard</a></li>
-                        <li class="breadcrumb-item active">Form Pengajuan</li>
+                        <li class="breadcrumb-item"><a href="{{ route('penduduk') }}">Dashboard</a></li>
+                        <li class="breadcrumb-item"><a href="{{ route('penduduk.pengajuan') }}">Table Pengajuan</a></li>
+                        <li class="breadcrumb-item active">Form Tambah Pengajuan</li>
                     </ol>
                 </div>
             </div>

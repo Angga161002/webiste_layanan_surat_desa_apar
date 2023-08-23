@@ -2,7 +2,8 @@
 <html>
 
 <head>
-    <title>Template Surat Keterangan</title>
+    <link rel="icon" href="{{ asset('kota-pariaman.png') }}" />
+    <title>Surat Keterangan Kurang Mampu</title>
     <style>
         /* Gaya untuk elemen-elemen surat */
         body {
@@ -56,55 +57,79 @@
     <div class="container">
         <div class="header">
             <img src="{{ asset('kota-pariaman.png') }}" alt="Kota Pariaman" class="brand-image">
-            <div class="header-content">
-                <h3>PEMERINTAH KOTA PARIAMAN</h3>
-                <h3>KECAMATAN PARIAMAN UTARA</h3>
-                <h2>KELURAHAN DESA APAR</h2>
-                <p style="margin: 0; text-align: center">Alamat : Jl. Imam Bonjol No. 44 Telp. (+62751- 92202) Pariaman
-                    25511 </p>
+            <div class="header-content" style="text-align: center; margin-left: 50px">
+                <h2>PEMERINTAH KOTA PARIAMAN</h2>
+                <h2>KECAMATAN PARIAMAN UTARA</h2>
+                <h2>DESA APAR</h2>
+                <p style="margin: 0;"><b>Jln Wr Soepratman Desa Apar Kode Pos: 25522</b></p>
             </div>
         </div>
+
 
 
         <div class="content">
             <p style="text-align: center; font-weight: bold; text-decoration: underline; margin-bottom: -14px">
                 @if ($pengajuans->id_jenis_surat == 1)
-                    SURAT KETERANGAN TIDAK MAMPU
+                    SURAT KETERANGAN KURANG MAMPU
                 @else
                     {{ $pengajuans->id_jenis_surat }}
                 @endif
             </p>
-            <p style="text-align: center;margin-bottom: 40px;">NOMORSKTM : {{ $pengajuans->no_dokumen_perjalanan }}/DA/KPU/KP/2023</p>
+            <p style="text-align: center;margin-bottom: 40px;"><b>Nomor : {{ $pengajuans->no_dokumen_perjalanan }}
+                    /SKKM/
+                    DS-AP /VIII/2023</b></p>
 
             <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Yang bertanda tangan dibawah ini Kepala
-                Desa Apar. Kecamatan Pariaman Utara, Kota
-                Pariaman, Provinsi Sumatera Barat. Dengan ini menerangkan bahwa :</p><br>
+                Desa Apar Kecamatan Pariaman Utara Kota
+                Pariaman Provinsi Sumatera Barat. Menyatakan bahwa :</p><br>
 
-            <table class="table">
+            <table class="table" style="margin-left: 40px">
                 <tr>
-                    <td>Nama orang Tua/ Wali</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>Nama</td>
                     <td>:</td>
-                    <td>{{ $pengajuans->name_orang_tua }}</td>
+                    <td><b>{{ ucfirst($pengajuans->name) }}</b></td>
                 </tr>
                 <tr>
                     <td>Tempat, Tgl Lahir</td>
                     <td>:</td>
-                    <td>{{ $pengajuans->tempat_lahir }}, {{ $pengajuans->tanggal_lahir }}</td>
+                    <td>{{ ucfirst($pengajuans->tempat_lahir) }}, {{ $pengajuans->tanggal_lahir }}</td>
+                </tr>
+                <tr>
+                    <td>Jenis Kelamin</td>
+                    <td>:</td>
+                    <td>
+                        @if ($pengajuans->jenis_kelamin === 'L')
+                            Laki-laki
+                        @elseif ($pengajuans->jenis_kelamin === 'P')
+                            Perempuan
+                        @endif
+                    </td>
+
+                </tr>
+                <tr>
+                    <td>Agama</td>
+                    <td>:</td>
+                    <td>{{ ucfirst($pengajuans->agama) }}</td>
+                </tr>
+                <tr>
+                    <td>Status Perkawinan</td>
+                    <td>:</td>
+                    <td>Belum Kawin</td>
                 </tr>
                 <tr>
                     <td>Pekerjaan</td>
                     <td>:</td>
-                    <td>{{ $pengajuans->pekerjaan }}</td>
+                    <td>{{ ucfirst($pengajuans->pekerjaan) }}</td>
                 </tr>
                 <tr>
-                    <td>Jabatan</td>
+                    <td>Alamat Domisili</td>
                     <td>:</td>
-                    <td>{{ $pengajuans->pekerjaan }}</td>
-                </tr>
-                <tr>
-                    <td>Alamat lengkap sekarang</td>
-                    <td>:</td>
-                    <td>{{ $pengajuans->alamat }}</td>
+                    <td>{{ ucfirst($pengajuans->alamat) }}</td>
                 </tr>
                 <tr>
                     <td></td>
@@ -112,7 +137,7 @@
                     <td></td>
                 </tr>
                 <tr>
-                    <td>Adalah Benar Orang Tua kandung dari</td>
+                    <td>Adalah anak dari Orang Tua / Wali dari</td>
                     <td>:</td>
                 </tr>
                 <tr>
@@ -123,43 +148,51 @@
                 <tr>
                     <td>Nama</td>
                     <td>:</td>
-                    <td>{{ $pengajuans->name }}</td>
+                    <td>{{ $pengajuans->name_orang_tua }}</td>
                 </tr>
                 <tr>
-                    <td>Tempat, Tgl Lahir</td>
+                    <td>Umur</td>
                     <td>:</td>
-                    <td>{{ $pengajuans->tempat_lahir }}, {{ $pengajuans->tanggal_lahir }}</td>
+                    <td>49 Tahun</td>
                 </tr>
                 <tr>
-                    <td>Diterima Pada Fakultas</td>
+                    <td>Jenis Kelamin</td>
                     <td>:</td>
-                    <td>Politeknik Negeri Padang</td>
+                    <td>Laki-laki</td>
                 </tr>
                 <tr>
-                    <td>Jurusan/ Prodi</td>
+                    <td>Pekerjaan</td>
                     <td>:</td>
-                    <td>Manajemen Informatika</td>
+                    <td>Buruh Harian Lepas</td>
                 </tr>
                 <tr>
-                    <td>Alamat lengkap sekarang</td>
+                    <td>Alamat</td>
                     <td>:</td>
-                    <td>{{ $pengajuans->alamat }}</td>
+                    <td>{{ ucfirst($pengajuans->alamat) }}</td>
                 </tr>
             </table>
 
             <br>
-            <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Yang kehidupan sosial ekonominya kurang mampu
-                (MISKIN) dan berpenghasilan rata-rata perbulan Rp. 500.000
-                dengan tanggungan 5 orang anggota keluarga.</p>
+            <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Menerangkan bahwa nama yang tersebut diatas
+                adalah warga yang berdomisili Desa Apar menurut pendataan kami memang termasuk kurang mampu, untuk itu
+                kami mohon kepada pihak yang berwenang untuk dapat memberikan Beasiswa dan Fasilitas lainnya.</p>
 
-            <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Demikian surat keterangan ini kami keluarkan
-                untuk pengurusan Beasiswa Bidik Misi angkatan 2023 melalui
-                Politeknik Negeri Padang,</p>
+            <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Demikian surat keterangan ini kami berikan
+                kepada yang bersangkutan untuk dapat dipergunakan sebagai mana perlunya.</p>
             <div style="text-align: right;">
-                <p>Apar, Senin 13 Agustus 2023</p>
+                @php
+                    $englishMonths = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
+                    $indonesianMonths = ['Januari', 'Februari', 'Maret', 'April', 'Mei', 'Juni', 'Juli', 'Agustus', 'September', 'Oktober', 'November', 'Desember'];
+                    $currentMonthIndex = date('n') - 1; // January is 1, so we subtract 1 to get the correct index
+                    $indonesianMonth = $indonesianMonths[$currentMonthIndex];
+                @endphp
+
+                <p>Desa Apar, {{ date('d', time()) }} {{ $indonesianMonth }} {{ date('Y', time()) }}</p>
+
                 <p style="margin-right: 40px;">Kepala Desa Apar</p>
-                <img src="{{ asset('kota-pariaman.png') }}" alt="Kota Pariaman" style="margin-right: 35px;">
-                <p style="font-weight: bold; text-decoration: underline;margin-right: 70px;">Hendrik</p>
+                <img src="{{ asset('ttd-kepsek.png') }}" alt="Kota Pariaman"
+                    style="margin-right: 35px;width: 120px; height: 100px;">
+                <p style="font-weight: bold;margin-right: 70px;">Hendrik</p>
             </div>
 
         </div>

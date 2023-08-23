@@ -10,6 +10,8 @@ use Session;
 use RealRashid\SweetAlert\Facades\Alert;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
+use Maatwebsite\Excel\Facades\Excel;
+use App\Imports\PendudukImport;
 
 class PegawaiController extends Controller
 {
@@ -154,6 +156,13 @@ class PegawaiController extends Controller
         $data['pegawai'] = Pegawai::where('id', '=', Session::get('id'))->first();
         // dd($pegawai->all());
         return view('pegawai.dashboard', $data);
+    }
+
+    public function importexcel(Request $request)
+    {
+        // dd($request->all());
+        Excel::import(new PendudukImport, $request->file('file'));
+        return redirect()->route('pegawai.penduduk')->with('success', 'Data Berhasil Diimport!');
     }
 
     //Pegawai

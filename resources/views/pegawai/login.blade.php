@@ -43,7 +43,7 @@
                                         <label class="label-title" for="username">Username</label>
 
                                         <input type="username" name="username" id="username" class="form-control"
-                                            value="" placeholder="admin@apar.com" autocomplete="username">
+                                            value="" placeholder="Masukan Username" autocomplete="username">
                                     </div>
                                 </div>
                             </div>

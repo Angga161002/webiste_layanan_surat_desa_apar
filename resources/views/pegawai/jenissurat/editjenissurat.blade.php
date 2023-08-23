@@ -17,8 +17,8 @@
                 </div>
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
-                        <li class="breadcrumb-item"><a href="#">Dashboard</a></li>
-                        <li class="breadcrumb-item active">Tabel Jenis Surat</li>
+                        <li class="breadcrumb-item"><a href="{{ route('pegawai') }}">Dashboard</a></li>
+                        <li class="breadcrumb-item"><a href="{{ route('pegawai.jenissurat') }}">Table Jenis Surat</a></li>
                         <li class="breadcrumb-item active">Edit Jenis Surat</li>
                     </ol>
                 </div>
@@ -54,7 +54,7 @@
                             </div>
                             <!-- /.card-body -->
                             <div class="card-footer">
-                                <a href="{{ route('pegawai.pegawai') }}" type="button"
+                                <a href="{{ route('pegawai.jenissurat') }}" type="button"
                                     class="btn btn-secondary">Kembali</a>
                                 <button type="submit" class="btn btn-primary float-right">Edit</button>
                             </div>

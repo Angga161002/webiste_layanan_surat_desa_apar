@@ -58,7 +58,7 @@ Route::get('/penduduk/table/pengajuan/surat/print/5/{pengajuans}', 'App\Http\Con
 Route::get('/penduduk/table/pengajuan/surat/print/6/{pengajuans}', 'App\Http\Controllers\PendudukController@suratketerangankelakuanbaik')->name('penduduk.suratketerangankelakuanbaik')->middleware('penduduk_auth');
 Route::get('/penduduk/table/pengajuan/surat/print/7/{pengajuans}', 'App\Http\Controllers\PendudukController@suratketeranganijinorangtuawali')->name('penduduk.suratketeranganijinorangtuawali')->middleware('penduduk_auth');
 Route::get('/penduduk/table/pengajuan/surat/print/8/{pengajuans}', 'App\Http\Controllers\PendudukController@suratketeranganbedanama')->name('penduduk.suratketeranganbedanama')->middleware('penduduk_auth');
-Route::get('/penduduk/table/pengajuan/surat/print/9/{pengajuans}', 'App\Http\Controllers\PendudukController@suratpernytaanbelumtidakbekerja')->name('penduduk.suratpernytaanbelumtidakbekerja')->middleware('penduduk_auth');
+Route::get('/penduduk/table/pengajuan/surat/print/9/{pengajuans}', 'App\Http\Controllers\PendudukController@suratpernyataanbelumtidakbekerja')->name('penduduk.suratpernyataanbelumtidakbekerja')->middleware('penduduk_auth');
 // Route::get('/test', 'App\Http\Controllers\PendudukController@test')->name('penduduk.test');
 
 //Pegawai
@@ -80,6 +80,7 @@ Route::get('/pegawai/table/penduduk/add', 'App\Http\Controllers\PegawaiControlle
 Route::post('/pegawai/table/penduduk/tambah', 'App\Http\Controllers\PegawaiController@tambahpenduduk')->name('pegawai.tambahpenduduk')->middleware('pegawai_auth');
 Route::get('/pegawai/table/penduduk/hapus/{penduduks}', 'App\Http\Controllers\PegawaiController@hapuspenduduk')->name('pegawai.hapuspenduduk')->middleware('pegawai_auth');
 Route::get('/pegawai/table/penduduk/detail/{penduduks}', 'App\Http\Controllers\PegawaiController@detailpenduduk')->name('pegawai.detailpenduduk')->middleware('pegawai_auth');
+Route::post('/pegawai/table/penduduk/importexel', 'App\Http\Controllers\PegawaiController@importexcel')->name('pegawai.importexcel')->middleware('pegawai_auth');
 
 
 //Tabel Pengajuan
@@ -106,4 +107,4 @@ Route::get('/pegawai/table/pengajuan/surat/print/5/{pengajuans}', 'App\Http\Cont
 Route::get('/pegawai/table/pengajuan/surat/print/6/{pengajuans}', 'App\Http\Controllers\PegawaiController@suratketerangankelakuanbaik')->name('pegawai.suratketerangankelakuanbaik')->middleware('pegawai_auth');
 Route::get('/pegawai/table/pengajuan/surat/print/7/{pengajuans}', 'App\Http\Controllers\PegawaiController@suratketeranganijinorangtuawali')->name('pegawai.suratketeranganijinorangtuawali')->middleware('pegawai_auth');
 Route::get('/pegawai/table/pengajuan/surat/print/8/{pengajuans}', 'App\Http\Controllers\PegawaiController@suratketeranganbedanama')->name('pegawai.suratketeranganbedanama')->middleware('pegawai_auth');
-Route::get('/pegawai/table/pengajuan/surat/print/9/{pengajuans}', 'App\Http\Controllers\PegawaiController@suratpernytaanbelumtidakbekerja')->name('pegawai.suratpernytaanbelumtidakbekerja')->middleware('pegawai_auth');
+Route::get('/pegawai/table/pengajuan/surat/print/9/{pengajuans}', 'App\Http\Controllers\PegawaiController@suratpernyataanbelumtidakbekerja')->name('pegawai.suratpernyataanbelumtidakbekerja')->middleware('pegawai_auth');

@@ -32,8 +32,8 @@
                 </div>
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
-                        <li class="breadcrumb-item"><a href="#">Dashboard</a></li>
-                        <li class="breadcrumb-item active">Tabel Pegawai</li>
+                        <li class="breadcrumb-item"><a href="{{ route('pegawai') }}">Dashboard</a></li>
+                        <li class="breadcrumb-item"><a href="{{ route('pegawai.pegawai') }}">Table Pegawai</a></li>
                         <li class="breadcrumb-item active">Tambah Pegawai</li>
                     </ol>
                 </div>

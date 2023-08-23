@@ -17,7 +17,7 @@
                 </div>
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
-                        <li class="breadcrumb-item"><a href="#">Dashboard</a></li>
+                        <li class="breadcrumb-item"><a href="{{ route('pegawai') }}">Dashboard</a></li>
                         <li class="breadcrumb-item active">Tabel Pengajuan</li>
                     </ol>
                 </div>
@@ -434,6 +434,7 @@
 </div>
 <!-- /.content-wrapper -->
 @include('layouts.footer')
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <script>
     // Fungsi untuk mencetak data menjadi surat desa
     function printSuratDesa(id) {

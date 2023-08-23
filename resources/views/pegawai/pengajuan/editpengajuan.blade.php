@@ -17,8 +17,8 @@
                 </div>
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
-                        <li class="breadcrumb-item"><a href="#">Dashboard</a></li>
-                        <li class="breadcrumb-item active">Tabel Pengajuan</li>
+                        <li class="breadcrumb-item"><a href="{{ route('pegawai') }}">Dashboard</a></li>
+                        <li class="breadcrumb-item"><a href="{{ route('pegawai.pengajuan') }}">Table Pengajuan</a></li>
                         <li class="breadcrumb-item active">Edit Status Pengajuan</li>
                     </ol>
                 </div>

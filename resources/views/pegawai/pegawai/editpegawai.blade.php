@@ -17,8 +17,8 @@
                 </div>
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
-                        <li class="breadcrumb-item"><a href="#">Dashboard</a></li>
-                        <li class="breadcrumb-item active">Tabel Pegawai</li>
+                        <li class="breadcrumb-item"><a href="{{ route('pegawai') }}">Dashboard</a></li>
+                        <li class="breadcrumb-item"><a href="{{ route('pegawai.pegawai') }}">Table Pegawai</a></li>
                         <li class="breadcrumb-item active">Edit Pegawai</li>
                     </ol>
                 </div>
@@ -53,18 +53,18 @@
                                 </div>
                                 <div class="form-group">
                                     <label for="email">Email</label>
-                                    <input type="email" name="email" class="form-control"
-                                        id="email" value="{{ $pegawais->email }}" placeholder="Enter Email">
+                                    <input type="email" name="email" class="form-control" id="email"
+                                        value="{{ $pegawais->email }}" placeholder="Enter Email">
                                 </div>
                                 <div class="form-group">
                                     <label for="nohp">No Hp</label>
                                     <input type="number" name="no_hp" class="form-control" id="nohp"
-                                    value="{{ $pegawais->no_hp }}" placeholder="Enter No Hp">
+                                        value="{{ $pegawais->no_hp }}" placeholder="Enter No Hp">
                                 </div>
                                 <div class="form-group">
                                     <label for="password">Password</label>
-                                    <input type="hidden" name="password" class="form-control"
-                                        id="password" value="{{ $pegawais->password  }}" placeholder="Enter Password">
+                                    <input type="hidden" name="password" class="form-control" id="password"
+                                        value="{{ $pegawais->password }}" placeholder="Enter Password">
                                 </div>
                             </div>
                             <!-- /.card-body -->
