@@ -34,7 +34,7 @@
                 </div>
                 <div class="col-md-8">
                     <!-- jquery validation -->
-                    <div class="card card-primary">
+                    <div class="card card-success">
                         <div class="card-header">
                             <h3 class="card-title">Profile Penduduk</h3>
                         </div>
@@ -111,7 +111,7 @@
                             <!-- /.card-body -->
                             <div class="card-footer">
                                 <a href="{{ route('penduduk') }}" type="button" class="btn btn-secondary">Kembali</a>
-                                <button type="submit" class="btn btn-primary float-right">Simpan Profile</button>
+                                <button type="submit" class="btn btn-success float-right">Simpan Profile</button>
                             </div>
                         </form>
                     </div>

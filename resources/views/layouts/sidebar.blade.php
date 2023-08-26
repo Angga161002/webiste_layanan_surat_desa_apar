@@ -1,7 +1,7 @@
   <!-- Main Sidebar Container -->
   <aside class="main-sidebar sidebar-dark-primary elevation-4">
       <!-- Brand Logo -->
-      <a href="index3.html" class="brand-link">
+      <a href="#" class="brand-link">
           <img src="{{ asset('kota-pariaman.png') }}" alt="Kota Pariaman" class="brand-image">
           <span class="brand-text font-weight-light">Desa Apar</span>
       </a>
@@ -11,13 +11,15 @@
           <!-- Sidebar user panel (optional) -->
           <div class="user-panel mt-3 pb-3 mb-3 d-flex">
               <div class="image">
-                  <img src="{{ asset('adminlte') }}/dist/img/user2-160x160.jpg" class="img-circle elevation-2"
-                      alt="User Image">
+                  <img src="{{ asset('img') }}/default_female.png" class="img-circle elevation-2" alt="User Image">
               </div>
               <div class="info">
                   <a href="#" class="d-block"><?php
-                  echo Session::get('username');
-                  ?></a>
+                  $username = Session::get('username');
+                  $capitalizedUsername = ucfirst($username);
+                  echo $capitalizedUsername;
+                  ?>
+                  </a>
               </div>
           </div>
 
@@ -57,12 +59,12 @@
                           </p>
                       </a>
                       <ul class="nav nav-treeview">
-                          <li class="nav-item">
+                          {{-- <li class="nav-item">
                               <a href="{{ route('pegawai.pegawai') }}" class="nav-link">
                                   <i class="fa fa-user me-5" style="margin-left: 21px; margin-right: 5px;"></i>
                                   <p>Tabel Pegawai</p>
                               </a>
-                          </li>
+                          </li> --}}
                           <li class="nav-item">
                               <a href="{{ route('pegawai.penduduk') }}" class="nav-link">
                                   <i class="fa fa-users me-5" style="margin-left: 18px; margin-right: 5px;"></i>
@@ -83,7 +85,7 @@
                           </li>
                       </ul>
                   </li>
-                  <li class="nav-header">EXAMPLES</li>
+                  <li class="nav-header">AKTIVITY</li>
                   <li class="nav-item">
                       <a href="{{ route('pegawai.calendar') }}" onclick="toggleActive(this)" class="nav-link">
                           <i class="nav-icon far fa-calendar-alt"></i>

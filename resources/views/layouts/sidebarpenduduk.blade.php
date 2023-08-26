@@ -1,7 +1,7 @@
   <!-- Main Sidebar Container -->
   <aside class="main-sidebar sidebar-dark-primary elevation-4">
       <!-- Brand Logo -->
-      <a href="index3.html" class="brand-link">
+      <a href="#" class="brand-link">
           <img src="{{ asset('kota-pariaman.png') }}" alt="Kota Pariaman" class="brand-image">
           <span class="brand-text font-weight-light">Desa Apar</span>
       </a>
@@ -11,8 +11,17 @@
           <!-- Sidebar user panel (optional) -->
           <div class="user-panel mt-3 pb-3 mb-3 d-flex">
               <div class="image">
-                  <img src="{{ asset('adminlte') }}/dist/img/user2-160x160.jpg" class="img-circle elevation-2"
-                      alt="User Image">
+                  @if ($penduduk->jenis_kelamin == 'P')
+                      <a href="{{ route('penduduk.profile') }}" class="d-block">
+                          <img src="{{ asset('img') }}/default_female.png" class="img-circle elevation-2"
+                              alt="User Image">
+                      </a>
+                  @else
+                      <a href="{{ route('penduduk.profile') }}" class="d-block">
+                          <img src="{{ asset('img') }}/default_male.png" class="img-circle elevation-2"
+                              alt="User Image">
+                      </a>
+                  @endif
               </div>
               <div class="info">
                   <a href="{{ route('penduduk.profile') }}" class="d-block">
@@ -71,7 +80,7 @@
                           </li>
                       </ul>
                   </li>
-                  <li class="nav-header">EXAMPLES</li>
+                  <li class="nav-header">AKTIVITY</li>
                   <li class="nav-item">
                       <a href="{{ route('penduduk.calendar') }}" onclick="toggleActive(this)" class="nav-link">
                           <i class="nav-icon far fa-calendar-alt"></i>

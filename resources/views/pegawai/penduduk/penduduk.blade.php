@@ -50,7 +50,7 @@
                                         <th>NO</th>
                                         <th>NIK</th>
                                         <th>Name</th>
-                                        <th>Email</th>
+                                        <th>Alamat</th>
                                         <th>No Hp</th>
                                         <th>Action</th>
                                     </tr>
@@ -61,7 +61,7 @@
                                             <td>{{ $loop->iteration }}</td>
                                             <td>{{ $penduduks->nik }}</td>
                                             <td>{{ $penduduks->name }}</td>
-                                            <td>{{ $penduduks->email ? $penduduks->email : '-' }}</td>
+                                            <td>{{ $penduduks->alamat ? $penduduks->alamat : '-' }}</td>
                                             <td>{{ $penduduks->no_hp ? $penduduks->no_hp : '-' }}</td>
                                             <td><a type="button" class="btn-detail" data-nik={{ $penduduks->nik }}
                                                     title="Detail">
@@ -80,7 +80,7 @@
                                         <th>NO</th>
                                         <th>NIK</th>
                                         <th>Name</th>
-                                        <th>Email</th>
+                                        <th>Alamat</th>
                                         <th>No Hp</th>
                                         <th>Action</th>
                                     </tr>
